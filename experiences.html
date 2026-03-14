@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Expériences autour de Steuph — Balades, Gourmandises, Culture | Notre Steuph</title>
+  <meta name="description" content="Balades, escapades, baignades, gourmandises et culture autour de Sainte-Euphémie-sur-Ouvèze. La route des crêtes, la Rochette, les eaux du Combo, bonnes adresses et spectacles en Drôme Provençale.">
+  <meta name="keywords" content="balades Drôme Provençale, route des crêtes, baignade Rochette, eaux du Combo, restaurants Sainte-Euphémie, cerises Drôme, escapades Baronnies">
+  <meta name="author" content="Florence Petrich">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://notresteuph.fr/experiences.html">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notresteuph.fr/experiences.html">
+  <meta property="og:title" content="Expériences autour de Steuph — Balades, Gourmandises, Culture">
+  <meta property="og:description" content="Balades, escapades, baignades, gourmandises et culture autour de Sainte-Euphémie-sur-Ouvèze, Drôme Provençale.">
+  <meta property="og:image" content="https://notresteuph.fr/images/experiences.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Notre Steuph">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Expériences autour de Steuph">
+  <meta name="twitter:description" content="Balades, escapades, baignades, gourmandises et culture en Drôme Provençale.">
+  <meta name="twitter:image" content="https://notresteuph.fr/images/experiences.jpg">
+
+  <!-- GEO -->
+  <meta name="geo.region" content="FR-26">
+  <meta name="geo.placename" content="Sainte-Euphémie-sur-Ouvèze">
+  <meta name="geo.position" content="44.2833;5.1167">
+  <meta name="ICBM" content="44.2833, 5.1167">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .exp-hero {
+      background: #2e2416;
+      padding: 120px 32px 64px;
+      text-align: center;
+    }
+    .exp-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 300;
+      color: #F5EFE4;
+      margin: 0 0 16px;
+      letter-spacing: 0.04em;
+    }
+    .exp-hero p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: #a08060;
+      margin: 0;
+    }
+
+    .exp-nav {
+      background: #F5EFE4;
+      border-bottom: 0.5px solid rgba(90,74,53,0.2);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .exp-nav a {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #7a6850;
+      text-decoration: none;
+      padding: 16px 24px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .exp-nav a:hover {
+      color: #2e2416;
+      border-bottom-color: #D4A050;
+    }
+
+    .exp-section {
+      padding: 72px 32px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .exp-section:not(:last-of-type) {
+      border-bottom: 0.5px solid rgba(90,74,53,0.15);
+    }
+
+    .exp-section-titre {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .exp-section-ico {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #D4A050;
+    }
+    .exp-section-titre h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 300;
+      color: #2e2416;
+      margin: 0;
+    }
+
+    .exp-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .exp-card {
+      background: #fff;
+      border: 0.5px solid rgba(90,74,53,0.2);
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+    .exp-card:hover {
+      border-color: #D4A050;
+    }
+    .exp-card-titre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #2e2416;
+      margin: 0 0 10px;
+    }
+    .exp-card-texte {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: #7a6850;
+      line-height: 1.6;
+      margin: 0 0 14px;
+    }
+    .exp-card-tag {
+      font-family: 'Jost', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #D4A050;
+    }
+
+    .exp-vide {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: #a08060;
+      padding: 32px 0;
+    }
+    .exp-contribuer {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #2e2416;
+      text-decoration: none;
+      border-bottom: 0.5px solid #D4A050;
+      padding-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MENU HAMBURGER -->
+  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </button>
+
+  <!-- PANNEAU MENU -->
+  <nav class="menu-panneau" id="menuPanneau">
+    <button class="menu-fermer" onclick="toggleMenu()">×</button>
+    <ul class="menu-liste">
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="village.html">Le village</a></li>
+      <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="experiences.html">Expériences</a></li>
+      <li><a href="patrimoine.html">Notre patrimoine</a></li>
+      <li><a href="contribuer.html">Contribuer</a></li>
+    </ul>
+    <div class="menu-bas">
+      <a href="contribuer.html">Déposer un souvenir</a>
+      <a href="espace-prive.html">Espace privé</a>
+    </div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- HERO -->
+  <header class="exp-hero">
+    <h1>Expériences</h1>
+    <p>Ce qu'on aime faire, voir, manger, vivre autour de Steuph</p>
+  </header>
+
+  <!-- NAVIGATION SOUS-RUBRIQUES -->
+  <nav class="exp-nav">
+    <a href="#balades">Balades</a>
+    <a href="#escapades">Escapades</a>
+    <a href="#baignades">Baignades</a>
+    <a href="#gourmandises">Gourmandises</a>
+    <a href="#culture">Culture</a>
+  </nav>
+
+  <!-- BALADES -->
+  <section class="exp-section" id="balades">
+    <div class="exp-section-titre">
+      <span class="exp-section-ico">Balades</span>
+      <h2>À pied, à vélo, en voiture</h2>
+    </div>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <p class="exp-card-titre">La route des crêtes</p>
+        <p class="exp-card-texte">Un panorama exceptionnel sur les Baronnies et le Ventoux. À faire en fin de journée pour la lumière.</p>
+        <span class="exp-card-tag">Voiture · 45 min</span>
+      </div>
+      <div class="exp-card">
+        <p class="exp-card-titre">Votre balade favorite ?</p>
+        <p class="exp-card-texte">Ce site se nourrit de vos souvenirs et de vos bons plans. Partagez votre itinéraire préféré.</p>
+        <a href="contribuer.html" class="exp-contribuer">Contribuer →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCAPADES -->
+  <section class="exp-section" id="escapades">
+    <div class="exp-section-titre">
+      <span class="exp-section-ico">Escapades</span>
+      <h2>Les environs à explorer</h2>
+    </div>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <p class="exp-card-titre">Votre escapade favorite ?</p>
+        <p class="exp-card-texte">Villages perchés, marchés, sites naturels des Baronnies et de la Drôme Provençale — partagez vos coups de cœur.</p>
+        <a href="contribuer.html" class="exp-contribuer">Contribuer →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAIGNADES -->
+  <section class="exp-section" id="baignades">
+    <div class="exp-section-titre">
+      <span class="exp-section-ico">Baignades</span>
+      <h2>Les coins pour se baigner</h2>
+    </div>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <p class="exp-card-titre">La Rochette</p>
+        <p class="exp-card-texte">Un des spots de baignade les plus aimés des familles de Steuph. Eau fraîche, rochers plats, ombre naturelle.</p>
+        <span class="exp-card-tag">Rivière</span>
+      </div>
+      <div class="exp-card">
+        <p class="exp-card-titre">Les eaux du Combo</p>
+        <p class="exp-card-texte">Un coin préservé, connu des seuls initiés. La rivière y est limpide et le silence absolu.</p>
+        <span class="exp-card-tag">Rivière · Secret</span>
+      </div>
+      <div class="exp-card">
+        <p class="exp-card-titre">Le tunnel</p>
+        <p class="exp-card-texte">Le trou de baignade mythique des enfants de Steuph. Chaque génération y a sauté.</p>
+        <span class="exp-card-tag">Tradition</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOURMANDISES -->
+  <section class="exp-section" id="gourmandises">
+    <div class="exp-section-titre">
+      <span class="exp-section-ico">Gourmandises</span>
+      <h2>Manger, boire, se fournir</h2>
+    </div>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <p class="exp-card-titre">Les cerises des fermiers</p>
+        <p class="exp-card-texte">En juin, les producteurs locaux ouvrent leurs vergers. Les meilleures cerises de la Drôme se trouvent à deux kilomètres de Steuph.</p>
+        <span class="exp-card-tag">Producteur · Juin</span>
+      </div>
+      <div class="exp-card">
+        <p class="exp-card-titre">Votre bonne adresse ?</p>
+        <p class="exp-card-texte">Restaurant qu'on a aimé, producteur incontournable, marché à ne pas manquer — partagez vos bonnes adresses.</p>
+        <a href="contribuer.html" class="exp-contribuer">Contribuer →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTURE -->
+  <section class="exp-section" id="culture">
+    <div class="exp-section-titre">
+      <span class="exp-section-ico">Culture</span>
+      <h2>Spectacles, visites, événements</h2>
+    </div>
+    <div class="exp-cards">
+      <div class="exp-card">
+        <p class="exp-card-titre">Votre coup de cœur culturel ?</p>
+        <p class="exp-card-texte">Festival, exposition, visite de site, spectacle en plein air — partagez ce qui vous a marqué autour de Steuph.</p>
+        <a href="contribuer.html" class="exp-contribuer">Contribuer →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="nl-section">
+    <div class="nl-inner">
+      <p class="nl-titre">La lettre de Notre Steuph</p>
+      <p class="nl-sous">Actualités du village, mémoires des familles — quelques fois par an.</p>
+      <form class="nl-form" action="https://notresteuph.us18.list-manage.com/subscribe/post?u=fa550661a90b200a66fa59c49&amp;id=3fd95c1ff8" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" class="nl-input" placeholder="Votre adresse e-mail" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_fa550661a90b200a66fa59c49_3fd95c1ff8" tabindex="-1" value=""></div>
+        <button type="submit" class="nl-btn">S'inscrire</button>
+      </form>
+      <p class="nl-note">Jamais de spam · Désinscription en un clic.</p>
+    </div>
+  </section>
+
+  <footer class="pied">
+    <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
+    <p><a href="contribuer.html">Contribuer à ce site</a></p>
+  </footer>
+
+  <style>
+    /* --- Newsletter --- */
+    .nl-section{background:#E8D9C0;padding:56px 32px;text-align:center}
+    .nl-inner{max-width:520px;margin:0 auto}
+    .nl-titre{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#2e2416;margin:0 0 10px;letter-spacing:.02em}
+    .nl-sous{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#7a6850;margin:0 0 28px}
+    .nl-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+    .nl-input{padding:13px 18px;border:.5px solid rgba(90,74,53,.35);background:#F5EFE4;border-radius:2px;font-family:'Jost',sans-serif;font-size:14px;color:#2e2416;width:270px;outline:none;transition:border-color .2s}
+    .nl-input:focus{border-color:#D4A050}
+    .nl-btn{padding:13px 28px;background:#2e2416;color:#F5EFE4;border:none;border-radius:2px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+    .nl-btn:hover{background:#D4A050}
+    .nl-note{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:#a08060;margin:14px 0 0}
+    @media(max-width:520px){.nl-input,.nl-btn{width:100%}}
+  </style>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuPanneau').classList.toggle('ouvert');
+      document.getElementById('menuOverlay').classList.toggle('visible');
+      document.getElementById('menuBtn').classList.toggle('actif');
+    }
+  </script>
+</body>
+</html>

@@ -3,7 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contribuer — Notre Steuph</title>
+
+  <!-- SEO -->
+  <title>Contribuer — Partagez vos souvenirs de Sainte-Euphémie-sur-Ouvèze | Notre Steuph</title>
+  <meta name="description" content="Contribuez à la mémoire de Sainte-Euphémie-sur-Ouvèze. Partagez vos photos, anecdotes, noms de familles et souvenirs du village de la Drôme Provençale.">
+  <meta name="keywords" content="contribuer Sainte-Euphémie-sur-Ouvèze, partager souvenirs, photos village, témoignages, archives familiales, Drôme Provençale">
+  <meta name="author" content="Florence Petrich">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://notresteuph.fr/contribuer.html">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notresteuph.fr/contribuer.html">
+  <meta property="og:title" content="Contribuer — Partagez vos souvenirs de Sainte-Euphémie-sur-Ouvèze">
+  <meta property="og:description" content="Partagez vos photos, anecdotes et souvenirs du village. Ce site est vivant parce que vous l'alimentez.">
+  <meta property="og:image" content="https://notresteuph.fr/images/accueil.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Notre Steuph">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contribuer — Partagez vos souvenirs de Sainte-Euphémie-sur-Ouvèze">
+  <meta name="twitter:description" content="Partagez vos photos, anecdotes et souvenirs du village.">
+  <meta name="twitter:image" content="https://notresteuph.fr/images/accueil.jpg">
+
+  <!-- GEO -->
+  <meta name="geo.region" content="FR-26">
+  <meta name="geo.placename" content="Sainte-Euphémie-sur-Ouvèze">
+  <meta name="geo.position" content="44.2833;5.1167">
+  <meta name="ICBM" content="44.2833, 5.1167">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -22,6 +51,19 @@
     .contrib-forme:hover { background: #E8D9C0; }
     .contrib-forme-titre { font-family: 'Cormorant Garamond', serif; font-size: 22px; margin-bottom: 8px; }
     .contrib-forme-det { font-size: 13px; color: #7a6850; }
+
+    /* --- Newsletter --- */
+    .nl-section{background:#E8D9C0;padding:56px 32px;text-align:center}
+    .nl-inner{max-width:520px;margin:0 auto}
+    .nl-titre{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#2e2416;margin:0 0 10px;letter-spacing:.02em}
+    .nl-sous{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#7a6850;margin:0 0 28px}
+    .nl-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+    .nl-input{padding:13px 18px;border:.5px solid rgba(90,74,53,.35);background:#F5EFE4;border-radius:2px;font-family:'Jost',sans-serif;font-size:14px;color:#2e2416;width:270px;outline:none;transition:border-color .2s}
+    .nl-input:focus{border-color:#D4A050}
+    .nl-btn{padding:13px 28px;background:#2e2416;color:#F5EFE4;border:none;border-radius:2px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+    .nl-btn:hover{background:#D4A050}
+    .nl-note{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:#a08060;margin:14px 0 0}
+    @media(max-width:520px){.nl-input,.nl-btn{width:100%}}
   </style>
 </head>
 <body>
@@ -34,23 +76,35 @@
       <li><a href="histoire.html">Histoire</a></li>
       <li><a href="village.html">Le village</a></li>
       <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="experiences.html">Expériences</a></li>
       <li><a href="patrimoine.html">Notre patrimoine</a></li>
       <li><a href="vie.html">La vie du village</a></li>
       <li><a href="contribuer.html">Contribuer</a></li>
     </ul>
   </nav>
   <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
-
   <div class="page-header">
     <a href="index.html" class="page-retour">← Accueil</a>
     <h1 class="page-titre">Contribuer</h1>
     <p class="page-sous">Vos souvenirs, vos photos, vos histoires</p>
   </div>
-
   <div class="contrib-intro">
     <p class="contrib-texte">Ce site est vivant parce que vous l'alimentez. Une photo ancienne, le nom d'une famille, une anecdote, une date — tout compte. Vous connaissez Steuph mieux que nous.</p>
     <div class="contrib-note">→ Formulaire de contribution en cours de mise en place. En attendant, écrivez-nous directement.</div>
   </div>
+
+  <section class="nl-section">
+    <div class="nl-inner">
+      <p class="nl-titre">La lettre de Notre Steuph</p>
+      <p class="nl-sous">Actualités du village, mémoires des familles — quelques fois par an.</p>
+      <form class="nl-form" action="https://notresteuph.us18.list-manage.com/subscribe/post?u=fa550661a90b200a66fa59c49&amp;id=3fd95c1ff8" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" class="nl-input" placeholder="Votre adresse e-mail" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_fa550661a90b200a66fa59c49_3fd95c1ff8" tabindex="-1" value=""></div>
+        <button type="submit" class="nl-btn">S'inscrire</button>
+      </form>
+      <p class="nl-note">Jamais de spam · Désinscription en un clic.</p>
+    </div>
+  </section>
 
   <footer class="pied">
     <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>

@@ -3,7 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le village — Notre Steuph</title>
+
+  <!-- SEO -->
+  <title>Le village — Maisons et familles de Sainte-Euphémie-sur-Ouvèze | Notre Steuph</title>
+  <meta name="description" content="Carte interactive de Sainte-Euphémie-sur-Ouvèze. Découvrez les maisons, les familles et l'histoire des lieux : Gruel, Vrain, Brusset, Pasquet, Petrich.">
+  <meta name="keywords" content="Sainte-Euphémie-sur-Ouvèze village, maisons, familles, carte satellite, Gruel, Vrain, Brusset, Pasquet, Lavoir, Grand Portail, Drôme Provençale">
+  <meta name="author" content="Florence Petrich">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://notresteuph.fr/village.html">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notresteuph.fr/village.html">
+  <meta property="og:title" content="Le village — Maisons et familles de Sainte-Euphémie-sur-Ouvèze">
+  <meta property="og:description" content="Carte interactive du village. Les maisons, les familles, la mémoire des lieux.">
+  <meta property="og:image" content="https://notresteuph.fr/images/accueil.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Notre Steuph">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Le village — Maisons et familles de Sainte-Euphémie-sur-Ouvèze">
+  <meta name="twitter:description" content="Carte interactive du village. Les maisons, les familles, la mémoire des lieux.">
+  <meta name="twitter:image" content="https://notresteuph.fr/images/accueil.jpg">
+
+  <!-- GEO -->
+  <meta name="geo.region" content="FR-26">
+  <meta name="geo.placename" content="Sainte-Euphémie-sur-Ouvèze">
+  <meta name="geo.position" content="44.2833;5.1167">
+  <meta name="ICBM" content="44.2833, 5.1167">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -52,6 +81,19 @@
     .maison-info { padding: 10px 12px; }
     .maison-nom { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #2e2416; display: block; line-height: 1.3; }
     .maison-proprio { font-size: 11px; color: #7a6850; display: block; margin-top: 2px; }
+
+    /* --- Newsletter --- */
+    .nl-section{background:#E8D9C0;padding:56px 32px;text-align:center}
+    .nl-inner{max-width:520px;margin:0 auto}
+    .nl-titre{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#2e2416;margin:0 0 10px;letter-spacing:.02em}
+    .nl-sous{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#7a6850;margin:0 0 28px}
+    .nl-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+    .nl-input{padding:13px 18px;border:.5px solid rgba(90,74,53,.35);background:#F5EFE4;border-radius:2px;font-family:'Jost',sans-serif;font-size:14px;color:#2e2416;width:270px;outline:none;transition:border-color .2s}
+    .nl-input:focus{border-color:#D4A050}
+    .nl-btn{padding:13px 28px;background:#2e2416;color:#F5EFE4;border:none;border-radius:2px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+    .nl-btn:hover{background:#D4A050}
+    .nl-note{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:#a08060;margin:14px 0 0}
+    @media(max-width:520px){.nl-input,.nl-btn{width:100%}}
   </style>
 </head>
 <body>
@@ -62,6 +104,7 @@
       <li><a href="histoire.html">Histoire</a></li>
       <li><a href="village.html">Le village</a></li>
       <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="experiences.html">Expériences</a></li>
       <li><a href="patrimoine.html">Notre patrimoine</a></li>
       <li><a href="vie.html">La vie du village</a></li>
       <li><a href="contribuer.html">Contribuer</a></li>
@@ -81,10 +124,7 @@
     <div class="carte-container">
       <img src="images/satellite.png" alt="Vue satellite de Sainte-Euphémie-sur-Ouvèze" />
 
-      <!-- MONUMENT AUX MORTS -->
       <div class="point patrimoine" style="left:31.5%;top:22.8%" onclick="ouvrirFiche('monument')"><div class="point-cercle"></div><div class="point-label">Monument aux morts</div></div>
-
-      <!-- RUE DU LAVOIR — G L E F P L A (mitoyens, très proches) -->
       <div class="point" style="left:35.9%;top:29%" onclick="ouvrirFiche('moulin')"><div class="point-cercle"></div><div class="point-label">Le Moulin — Gilles Vrain</div></div>
       <div class="point" style="left:39.5%;top:29.6%" onclick="ouvrirFiche('obligeois')"><div class="point-cercle"></div><div class="point-label">Maison de l'Obligeois</div></div>
       <div class="point" style="left:42.5%;top:29.6%" onclick="ouvrirFiche('eric_vrain')"><div class="point-cercle"></div><div class="point-label">Maison Éric Vrain</div></div>
@@ -92,40 +132,21 @@
       <div class="point" style="left:49.8%;top:29.6%" onclick="ouvrirFiche('praia')"><div class="point-cercle"></div><div class="point-label">Maison Praia</div></div>
       <div class="point" style="left:53.4%;top:29%" onclick="ouvrirFiche('meme_lucie')"><div class="point-cercle"></div><div class="point-label">Maison de Mémé Lucie</div></div>
       <div class="point" style="left:58.2%;top:29%" onclick="ouvrirFiche('anouk')"><div class="point-cercle"></div><div class="point-label">Maison Anouk Walter Petrich</div></div>
-
-      <!-- BONFILS — F rouge en haut, en face d'Anouk côté route -->
       <div class="point" style="left:57.8%;top:13.6%" onclick="ouvrirFiche('bonfils')"><div class="point-cercle"></div><div class="point-label">Maison Bonfils / Fachinetti</div></div>
-
-      <!-- RUE DU LEVANT -->
-      <!-- C = Cure (entre Anouk et église) -->
       <div class="point" style="left:60%;top:35.8%" onclick="ouvrirFiche('cure')"><div class="point-cercle"></div><div class="point-label">La Cure — Pierre Touchant</div></div>
-      <!-- Église -->
       <div class="point patrimoine" style="left:63%;top:42%" onclick="ouvrirFiche('eglise')"><div class="point-cercle"></div><div class="point-label">Église Sainte-Euphémie</div></div>
-      <!-- B gauche = Gîte Daniel Brusset -->
       <div class="point" style="left:60%;top:53.1%" onclick="ouvrirFiche('gite_brusset')"><div class="point-cercle"></div><div class="point-label">Gîte Brusset — Daniel</div></div>
-      <!-- Pierrot, Nathalie, Rosier, Weber, Thomas — descendent depuis gîte Daniel -->
       <div class="point" style="left:60%;top:59%" onclick="ouvrirFiche('pierrot')"><div class="point-cercle"></div><div class="point-label">Maison Pierrot</div></div>
       <div class="point" style="left:60%;top:65%" onclick="ouvrirFiche('nathalie')"><div class="point-cercle"></div><div class="point-label">Maison Nathalie — Safran</div></div>
       <div class="point" style="left:60%;top:71%" onclick="ouvrirFiche('rosier')"><div class="point-cercle"></div><div class="point-label">Maison Rosier — Lise Gruel</div></div>
       <div class="point" style="left:60%;top:77%" onclick="ouvrirFiche('weber')"><div class="point-cercle"></div><div class="point-label">Maison Weber</div></div>
       <div class="point" style="left:60%;top:83%" onclick="ouvrirFiche('thomas_klein')"><div class="point-cercle"></div><div class="point-label">Maison Thomas / Klein</div></div>
-      <!-- Temple -->
       <div class="point patrimoine" style="left:66.6%;top:88%" onclick="ouvrirFiche('temple')"><div class="point-cercle"></div><div class="point-label">Le Temple</div></div>
-
-      <!-- GRAND PORTAIL -->
-      <!-- P = Pasquet (haut droite) -->
       <div class="point" style="left:79.1%;top:20.4%" onclick="ouvrirFiche('pasquet')"><div class="point-cercle"></div><div class="point-label">Maison Pasquet — Christophe</div></div>
-      <!-- B droite = Marcel Brusset -->
       <div class="point" style="left:75.4%;top:56.2%" onclick="ouvrirFiche('brusset')"><div class="point-cercle"></div><div class="point-label">Maison Brusset — Marcel</div></div>
-      <!-- B Christine — sous le P de Portail -->
       <div class="point" style="left:80.2%;top:40.1%" onclick="ouvrirFiche('christine_brusset')"><div class="point-cercle"></div><div class="point-label">Maison Christine Brusset</div></div>
-
-      <!-- MAIRIE -->
       <div class="point patrimoine" style="left:35.9%;top:93%" onclick="ouvrirFiche('mairie')"><div class="point-cercle"></div><div class="point-label">Mairie</div></div>
-
-      <!-- LAVOIR -->
       <div class="point patrimoine" style="left:57%;top:22%" onclick="ouvrirFiche('lavoir')"><div class="point-cercle"></div><div class="point-label">Le Lavoir</div></div>
-
     </div>
     <div style="display:flex;gap:20px;margin-top:10px;flex-wrap:wrap;font-family:'Jost',sans-serif;">
       <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#7a6850;"><div style="width:10px;height:10px;border-radius:50%;background:#D4A050;border:1.5px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div> Maison</div>
@@ -133,7 +154,6 @@
     </div>
   </div>
 
-  <!-- LISTE PAR RUES -->
   <div class="rues">
     <div class="rue-titre">Rue du Lavoir</div>
     <div class="maisons-liste">
@@ -171,6 +191,20 @@
     <div class="panneau-hero" id="p-hero"><div class="panneau-hero-gradient"></div><div class="panneau-hero-texte"><div class="panneau-hero-titre" id="p-titre"></div><div class="panneau-hero-sous" id="p-sous"></div></div></div>
     <div class="panneau-corps" id="p-corps"></div>
   </div>
+
+
+  <section class="nl-section">
+    <div class="nl-inner">
+      <p class="nl-titre">La lettre de Notre Steuph</p>
+      <p class="nl-sous">Actualités du village, mémoires des familles — quelques fois par an.</p>
+      <form class="nl-form" action="https://notresteuph.us18.list-manage.com/subscribe/post?u=fa550661a90b200a66fa59c49&amp;id=3fd95c1ff8" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" class="nl-input" placeholder="Votre adresse e-mail" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_fa550661a90b200a66fa59c49_3fd95c1ff8" tabindex="-1" value=""></div>
+        <button type="submit" class="nl-btn">S'inscrire</button>
+      </form>
+      <p class="nl-note">Jamais de spam · Désinscription en un clic.</p>
+    </div>
+  </section>
 
   <footer class="pied">
     <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>

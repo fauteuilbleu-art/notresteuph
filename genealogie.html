@@ -3,7 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Généalogie Gruel-Roger — Notre Steuph</title>
+
+  <!-- SEO -->
+  <title>Généalogie Gruel-Roger — Cinq générations à Sainte-Euphémie-sur-Ouvèze | Notre Steuph</title>
+  <meta name="description" content="Arbre généalogique des familles Gruel, Roger, Vrain, Pasquet, Petrich à Sainte-Euphémie-sur-Ouvèze. Cinq générations de mémoire villageoise en Drôme Provençale.">
+  <meta name="keywords" content="généalogie Gruel Roger, Sainte-Euphémie-sur-Ouvèze, Vrain, Pasquet, Petrich, Lutz, familles Drôme Provençale, arbre généalogique">
+  <meta name="author" content="Florence Petrich">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://notresteuph.fr/genealogie.html">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notresteuph.fr/genealogie.html">
+  <meta property="og:title" content="Généalogie Gruel-Roger — Cinq générations à Sainte-Euphémie-sur-Ouvèze">
+  <meta property="og:description" content="Arbre généalogique des familles Gruel, Roger, Vrain, Pasquet, Petrich. Cinq générations de mémoire villageoise.">
+  <meta property="og:image" content="https://notresteuph.fr/images/accueil.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Notre Steuph">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Généalogie Gruel-Roger — Sainte-Euphémie-sur-Ouvèze">
+  <meta name="twitter:description" content="Arbre généalogique des familles Gruel, Roger, Vrain, Pasquet, Petrich. Cinq générations.">
+  <meta name="twitter:image" content="https://notresteuph.fr/images/accueil.jpg">
+
+  <!-- GEO -->
+  <meta name="geo.region" content="FR-26">
+  <meta name="geo.placename" content="Sainte-Euphémie-sur-Ouvèze">
+  <meta name="geo.position" content="44.2833;5.1167">
+  <meta name="ICBM" content="44.2833, 5.1167">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -12,13 +41,9 @@
     h2.genea-titre { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: #2e2416; margin-bottom: 4px; }
     .genea-lien { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #a08060; border-bottom: 0.5px solid #a08060; text-decoration: none; display: inline-block; margin-bottom: 24px; }
     hr.genea-sep { border: none; border-top: 0.5px solid rgba(90,74,53,0.2); margin-bottom: 32px; }
-
-    /* ARBRE */
     .arbre { display: flex; flex-direction: column; align-items: center; gap: 0; }
     .niveau { display: flex; justify-content: center; gap: 16px; position: relative; }
     .groupe { display: flex; flex-direction: column; align-items: center; }
-
-    /* BOÎTES */
     .boite {
       font-family: 'Cormorant Garamond', serif;
       border: 1px solid #C4A882;
@@ -42,32 +67,33 @@
     .boite-maison { font-size: 10px; color: #B09070; margin-top: 4px; font-family: 'Jost', sans-serif; }
     .boite-maison a { color: #B09070; text-decoration: underline; }
     .dagger { color: #a08060; font-size: 13px; }
-
-    /* CONNECTEURS */
     .connecteur-bas { width: 1px; height: 24px; background: rgba(90,74,53,0.3); margin: 0 auto; }
     .connecteur-haut { width: 1px; height: 24px; background: rgba(90,74,53,0.3); margin: 0 auto; }
-    .ligne-horizontale {
-      height: 1px; background: rgba(90,74,53,0.3);
-      position: absolute; top: 0;
-    }
+    .ligne-horizontale { height: 1px; background: rgba(90,74,53,0.3); position: absolute; top: 0; }
     .branche { display: flex; flex-direction: column; align-items: center; }
-
-    /* SECTIONS */
     .section { margin-bottom: 56px; }
     .section-titre { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #7a6850; margin-bottom: 24px; padding-bottom: 8px; border-bottom: 0.5px solid rgba(90,74,53,0.15); }
-
-    /* RANGÉE D'ENFANTS avec ligne horizontale commune */
     .rangee-parent { display: flex; flex-direction: column; align-items: center; }
     .rangee-enfants-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; }
     .ligne-h-container { position: relative; width: 100%; display: flex; justify-content: center; }
     .rangee-enfants { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .enfant-col { display: flex; flex-direction: column; align-items: center; }
-
-    /* SOUS-BRANCHES (petits-enfants) */
     .sous-branche { margin-top: 0; display: flex; flex-direction: column; align-items: center; }
     .union-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #a08060; margin: 6px 0 4px; font-family: 'Jost', sans-serif; }
-
     .note-bas { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: #7a6850; margin-top: 48px; padding-top: 20px; border-top: 0.5px solid rgba(90,74,53,0.15); }
+
+    /* --- Newsletter --- */
+    .nl-section{background:#E8D9C0;padding:56px 32px;text-align:center}
+    .nl-inner{max-width:520px;margin:0 auto}
+    .nl-titre{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#2e2416;margin:0 0 10px;letter-spacing:.02em}
+    .nl-sous{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#7a6850;margin:0 0 28px}
+    .nl-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+    .nl-input{padding:13px 18px;border:.5px solid rgba(90,74,53,.35);background:#F5EFE4;border-radius:2px;font-family:'Jost',sans-serif;font-size:14px;color:#2e2416;width:270px;outline:none;transition:border-color .2s}
+    .nl-input:focus{border-color:#D4A050}
+    .nl-btn{padding:13px 28px;background:#2e2416;color:#F5EFE4;border:none;border-radius:2px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+    .nl-btn:hover{background:#D4A050}
+    .nl-note{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:#a08060;margin:14px 0 0}
+    @media(max-width:520px){.nl-input,.nl-btn{width:100%}}
   </style>
 </head>
 <body>
@@ -78,6 +104,7 @@
       <li><a href="histoire.html">Histoire</a></li>
       <li><a href="village.html">Le village</a></li>
       <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="experiences.html">Expériences</a></li>
       <li><a href="patrimoine.html">Notre patrimoine</a></li>
       <li><a href="vie.html">La vie du village</a></li>
       <li><a href="contribuer.html">Contribuer</a></li>
@@ -94,13 +121,8 @@
 
   <div class="genea-page">
 
-    <!-- ======================== -->
-    <!-- BRANCHE LUCIE ROGER      -->
-    <!-- ======================== -->
     <div class="section">
       <div class="section-titre">Branche Lucie Roger × Antoine Gruel</div>
-
-      <!-- RACINE -->
       <div class="rangee-parent">
         <div class="boite racine">
           <div class="boite-nom">Lucie Roger × Antoine Gruel</div>
@@ -108,11 +130,8 @@
           <div class="boite-maison"><a href="village.html">→ rue du Lavoir</a></div>
         </div>
         <div class="connecteur-bas"></div>
-
-        <!-- LES 5 SŒURS -->
         <div class="rangee-enfants">
 
-          <!-- Lucette -->
           <div class="enfant-col">
             <div class="connecteur-haut"></div>
             <div class="boite decede">
@@ -145,7 +164,6 @@
             </div>
           </div>
 
-          <!-- Lise -->
           <div class="enfant-col">
             <div class="connecteur-haut"></div>
             <div class="boite">
@@ -162,7 +180,6 @@
             </div>
           </div>
 
-          <!-- Liliane -->
           <div class="enfant-col">
             <div class="connecteur-haut"></div>
             <div class="boite decede">
@@ -176,7 +193,6 @@
             </div>
           </div>
 
-          <!-- Chantal -->
           <div class="enfant-col">
             <div class="connecteur-haut"></div>
             <div class="boite decede">
@@ -186,7 +202,6 @@
             </div>
             <div class="connecteur-bas"></div>
             <div class="rangee-enfants">
-              <!-- Christophe -->
               <div class="enfant-col">
                 <div class="connecteur-haut"></div>
                 <div class="boite">
@@ -205,7 +220,6 @@
                   <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Kim</div></div></div>
                 </div>
               </div>
-              <!-- Elisa -->
               <div class="enfant-col">
                 <div class="connecteur-haut"></div>
                 <div class="boite">
@@ -218,7 +232,6 @@
                   <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Irvin</div></div></div>
                 </div>
               </div>
-              <!-- Stéphanie -->
               <div class="enfant-col">
                 <div class="connecteur-haut"></div>
                 <div class="boite decede"><div class="boite-nom">Stéphanie Pasquet <span class="dagger">†</span></div></div>
@@ -226,7 +239,6 @@
             </div>
           </div>
 
-          <!-- Brigitte -->
           <div class="enfant-col">
             <div class="connecteur-haut"></div>
             <div class="boite">
@@ -249,13 +261,10 @@
             </div>
           </div>
 
-        </div><!-- fin rangee-enfants 5 sœurs -->
-      </div><!-- fin rangee-parent Lucie -->
+        </div>
+      </div>
     </div>
 
-    <!-- ======================== -->
-    <!-- BRANCHE ALICE ROGER      -->
-    <!-- ======================== -->
     <div class="section" style="margin-top:48px;">
       <div class="section-titre">Branche Alice Roger × Alfred Lutz</div>
       <div class="rangee-parent">
@@ -266,7 +275,6 @@
         <div class="connecteur-bas"></div>
         <div class="rangee-enfants">
 
-          <!-- Philippe -->
           <div class="enfant-col">
             <div class="connecteur-haut"></div>
             <div class="boite">
@@ -280,7 +288,6 @@
             </div>
           </div>
 
-          <!-- Danielle -->
           <div class="enfant-col">
             <div class="connecteur-haut"></div>
             <div class="boite decede">
@@ -320,6 +327,20 @@
     <div class="note-bas">† = décédé(e) · × = marié(e) à · <a href="contribuer.html" style="color:#a08060;">Compléter ou corriger →</a></div>
 
   </div>
+
+
+  <section class="nl-section">
+    <div class="nl-inner">
+      <p class="nl-titre">La lettre de Notre Steuph</p>
+      <p class="nl-sous">Actualités du village, mémoires des familles — quelques fois par an.</p>
+      <form class="nl-form" action="https://notresteuph.us18.list-manage.com/subscribe/post?u=fa550661a90b200a66fa59c49&amp;id=3fd95c1ff8" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" class="nl-input" placeholder="Votre adresse e-mail" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_fa550661a90b200a66fa59c49_3fd95c1ff8" tabindex="-1" value=""></div>
+        <button type="submit" class="nl-btn">S'inscrire</button>
+      </form>
+      <p class="nl-note">Jamais de spam · Désinscription en un clic.</p>
+    </div>
+  </section>
 
   <footer class="pied">
     <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
