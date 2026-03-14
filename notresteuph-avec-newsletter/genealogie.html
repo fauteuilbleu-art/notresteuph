@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Généalogie Gruel-Roger — Cinq générations à Sainte-Euphémie-sur-Ouvèze | Notre Steuph</title>
+  <meta name="description" content="Arbre généalogique des familles Gruel, Roger, Vrain, Pasquet, Petrich à Sainte-Euphémie-sur-Ouvèze. Cinq générations de mémoire villageoise en Drôme Provençale.">
+  <meta name="keywords" content="généalogie Gruel Roger, Sainte-Euphémie-sur-Ouvèze, Vrain, Pasquet, Petrich, Lutz, familles Drôme Provençale, arbre généalogique">
+  <meta name="author" content="Florence Petrich">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://notresteuph.fr/genealogie.html">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notresteuph.fr/genealogie.html">
+  <meta property="og:title" content="Généalogie Gruel-Roger — Cinq générations à Sainte-Euphémie-sur-Ouvèze">
+  <meta property="og:description" content="Arbre généalogique des familles Gruel, Roger, Vrain, Pasquet, Petrich. Cinq générations de mémoire villageoise.">
+  <meta property="og:image" content="https://notresteuph.fr/images/accueil.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Notre Steuph">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Généalogie Gruel-Roger — Sainte-Euphémie-sur-Ouvèze">
+  <meta name="twitter:description" content="Arbre généalogique des familles Gruel, Roger, Vrain, Pasquet, Petrich. Cinq générations.">
+  <meta name="twitter:image" content="https://notresteuph.fr/images/accueil.jpg">
+
+  <!-- GEO -->
+  <meta name="geo.region" content="FR-26">
+  <meta name="geo.placename" content="Sainte-Euphémie-sur-Ouvèze">
+  <meta name="geo.position" content="44.2833;5.1167">
+  <meta name="ICBM" content="44.2833, 5.1167">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .genea-page { padding: 32px; max-width: 1100px; overflow-x: auto; }
+    h2.genea-titre { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: #2e2416; margin-bottom: 4px; }
+    .genea-lien { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #a08060; border-bottom: 0.5px solid #a08060; text-decoration: none; display: inline-block; margin-bottom: 24px; }
+    hr.genea-sep { border: none; border-top: 0.5px solid rgba(90,74,53,0.2); margin-bottom: 32px; }
+    .arbre { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .niveau { display: flex; justify-content: center; gap: 16px; position: relative; }
+    .groupe { display: flex; flex-direction: column; align-items: center; }
+    .boite {
+      font-family: 'Cormorant Garamond', serif;
+      border: 1px solid #C4A882;
+      border-radius: 3px;
+      padding: 10px 14px;
+      text-align: center;
+      min-width: 140px;
+      max-width: 180px;
+      background: #EDE4D6;
+      position: relative;
+    }
+    .boite.racine { background: #C4A882; border-color: #A08060; }
+    .boite.decede { background: #EDE4D6; border-color: #C4A882; color: #7a6850; }
+    .boite.vide { background: transparent; border: 1px dashed #C4A882; color: #a08060; font-style: italic; }
+    .boite-nom { font-size: 17px; font-weight: 400; line-height: 1.2; color: #2e2416; }
+    .boite.decede .boite-nom { color: #7a6850; }
+    .boite.racine .boite-nom { color: #2e2416; }
+    .boite-epoux { font-size: 13px; font-style: italic; color: #5a4a38; margin-top: 3px; }
+    .boite.racine .boite-epoux { color: #3a2e20; }
+    .boite-detail { font-size: 11px; color: #a08060; margin-top: 4px; font-family: 'Jost', sans-serif; }
+    .boite-maison { font-size: 10px; color: #B09070; margin-top: 4px; font-family: 'Jost', sans-serif; }
+    .boite-maison a { color: #B09070; text-decoration: underline; }
+    .dagger { color: #a08060; font-size: 13px; }
+    .connecteur-bas { width: 1px; height: 24px; background: rgba(90,74,53,0.3); margin: 0 auto; }
+    .connecteur-haut { width: 1px; height: 24px; background: rgba(90,74,53,0.3); margin: 0 auto; }
+    .ligne-horizontale { height: 1px; background: rgba(90,74,53,0.3); position: absolute; top: 0; }
+    .branche { display: flex; flex-direction: column; align-items: center; }
+    .section { margin-bottom: 56px; }
+    .section-titre { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #7a6850; margin-bottom: 24px; padding-bottom: 8px; border-bottom: 0.5px solid rgba(90,74,53,0.15); }
+    .rangee-parent { display: flex; flex-direction: column; align-items: center; }
+    .rangee-enfants-wrapper { display: flex; flex-direction: column; align-items: center; width: 100%; }
+    .ligne-h-container { position: relative; width: 100%; display: flex; justify-content: center; }
+    .rangee-enfants { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .enfant-col { display: flex; flex-direction: column; align-items: center; }
+    .sous-branche { margin-top: 0; display: flex; flex-direction: column; align-items: center; }
+    .union-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #a08060; margin: 6px 0 4px; font-family: 'Jost', sans-serif; }
+    .note-bas { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: #7a6850; margin-top: 48px; padding-top: 20px; border-top: 0.5px solid rgba(90,74,53,0.15); }
+
+    /* --- Newsletter --- */
+    .nl-section{background:#E8D9C0;padding:56px 32px;text-align:center}
+    .nl-inner{max-width:520px;margin:0 auto}
+    .nl-titre{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#2e2416;margin:0 0 10px;letter-spacing:.02em}
+    .nl-sous{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#7a6850;margin:0 0 28px}
+    .nl-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+    .nl-input{padding:13px 18px;border:.5px solid rgba(90,74,53,.35);background:#F5EFE4;border-radius:2px;font-family:'Jost',sans-serif;font-size:14px;color:#2e2416;width:270px;outline:none;transition:border-color .2s}
+    .nl-input:focus{border-color:#D4A050}
+    .nl-btn{padding:13px 28px;background:#2e2416;color:#F5EFE4;border:none;border-radius:2px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+    .nl-btn:hover{background:#D4A050}
+    .nl-note{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:#a08060;margin:14px 0 0}
+    @media(max-width:520px){.nl-input,.nl-btn{width:100%}}
+  </style>
+</head>
+<body>
+  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span><span></span><span></span><span></span></button>
+  <nav class="menu-panneau" id="menuPanneau">
+    <button class="menu-fermer" onclick="toggleMenu()">×</button>
+    <ul class="menu-liste">
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="village.html">Le village</a></li>
+      <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="patrimoine.html">Notre patrimoine</a></li>
+      <li><a href="vie.html">La vie du village</a></li>
+      <li><a href="contribuer.html">Contribuer</a></li>
+    </ul>
+    <div class="menu-bas"><a href="contribuer.html">Déposer un souvenir</a></div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <div class="page-header">
+    <a href="village.html" class="page-retour">← Le village</a>
+    <h1 class="page-titre">Généalogie des Gruel</h1>
+    <p class="page-sous">Cinq générations à Sainte-Euphémie-sur-Ouvèze</p>
+  </div>
+
+  <div class="genea-page">
+
+    <div class="section">
+      <div class="section-titre">Branche Lucie Roger × Antoine Gruel</div>
+      <div class="rangee-parent">
+        <div class="boite racine">
+          <div class="boite-nom">Lucie Roger × Antoine Gruel</div>
+          <div class="boite-epoux" style="font-style:normal;font-size:12px;">Mémé Lucie</div>
+          <div class="boite-maison"><a href="village.html">→ rue du Lavoir</a></div>
+        </div>
+        <div class="connecteur-bas"></div>
+        <div class="rangee-enfants">
+
+          <div class="enfant-col">
+            <div class="connecteur-haut"></div>
+            <div class="boite decede">
+              <div class="boite-nom">Lucette Gruel <span class="dagger">†</span></div>
+              <div class="boite-epoux">× Daniel Petrich</div>
+            </div>
+            <div class="connecteur-bas"></div>
+            <div class="rangee-enfants">
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite decede"><div class="boite-nom">Pascal Petrich <span class="dagger">†</span></div></div>
+              </div>
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite"><div class="boite-nom">Frantz Petrich</div></div>
+              </div>
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite">
+                  <div class="boite-nom">Florence Petrich</div>
+                  <div class="boite-epoux">× Hector Obalk</div>
+                  <div class="boite-detail">67 ans — narratrice</div>
+                </div>
+                <div class="connecteur-bas"></div>
+                <div class="boite">
+                  <div class="boite-nom">Anouk Walter Petrich</div>
+                  <div class="boite-maison"><a href="village.html">→ rue du Lavoir</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="enfant-col">
+            <div class="connecteur-haut"></div>
+            <div class="boite">
+              <div class="boite-nom">Lise Gruel</div>
+              <div class="boite-epoux">× Jean-Pierre Rosier <span class="dagger">†</span></div>
+              <div class="boite-maison"><a href="village.html">→ rue du Levant</a></div>
+            </div>
+            <div class="connecteur-bas"></div>
+            <div class="rangee-enfants">
+              <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Valérie Rosier</div></div></div>
+              <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Nicolas Rosier</div></div></div>
+              <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Marine Rosier</div></div></div>
+              <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Guillaume Rosier</div></div></div>
+            </div>
+          </div>
+
+          <div class="enfant-col">
+            <div class="connecteur-haut"></div>
+            <div class="boite decede">
+              <div class="boite-nom">Liliane Gruel <span class="dagger">†</span></div>
+              <div class="boite-epoux">× Fabien Boissy</div>
+            </div>
+            <div class="connecteur-bas"></div>
+            <div class="rangee-enfants">
+              <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite decede"><div class="boite-nom">Jérôme Boissy <span class="dagger">†</span></div></div></div>
+              <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Nathalie Boissy</div></div></div>
+            </div>
+          </div>
+
+          <div class="enfant-col">
+            <div class="connecteur-haut"></div>
+            <div class="boite decede">
+              <div class="boite-nom">Chantal Gruel <span class="dagger">†</span></div>
+              <div class="boite-epoux">× Jean-Michel Pasquet</div>
+              <div class="boite-maison"><a href="village.html">→ Grand Portail</a></div>
+            </div>
+            <div class="connecteur-bas"></div>
+            <div class="rangee-enfants">
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite">
+                  <div class="boite-nom">Christophe Pasquet</div>
+                  <div class="boite-maison"><a href="village.html">→ Grand Portail</a></div>
+                </div>
+                <div class="connecteur-bas"></div>
+                <div class="union-label">1re union × Marithé Coutard</div>
+                <div class="rangee-enfants" style="margin-bottom:8px;">
+                  <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Morgan</div></div></div>
+                  <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Carla</div></div></div>
+                </div>
+                <div class="union-label">2e union × Blandine Paporai</div>
+                <div class="rangee-enfants">
+                  <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Izee</div></div></div>
+                  <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Kim</div></div></div>
+                </div>
+              </div>
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite">
+                  <div class="boite-nom">Elisa Pasquet</div>
+                  <div class="boite-epoux">× Val Lhome</div>
+                </div>
+                <div class="connecteur-bas"></div>
+                <div class="rangee-enfants">
+                  <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Kilian</div></div></div>
+                  <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Irvin</div></div></div>
+                </div>
+              </div>
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite decede"><div class="boite-nom">Stéphanie Pasquet <span class="dagger">†</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="enfant-col">
+            <div class="connecteur-haut"></div>
+            <div class="boite">
+              <div class="boite-nom">Brigitte Gruel</div>
+              <div class="boite-epoux">× Pascal Thomas</div>
+            </div>
+            <div class="connecteur-bas"></div>
+            <div class="rangee-enfants">
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite">
+                  <div class="boite-nom">Émilie Thomas/Klein</div>
+                  <div class="boite-maison"><a href="village.html">→ rue du Levant</a></div>
+                </div>
+              </div>
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite decede"><div class="boite-nom">Clément Thomas <span class="dagger">†</span></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top:48px;">
+      <div class="section-titre">Branche Alice Roger × Alfred Lutz</div>
+      <div class="rangee-parent">
+        <div class="boite racine">
+          <div class="boite-nom">Alice Roger × Alfred Lutz</div>
+          <div class="boite-epoux" style="font-style:normal;font-size:12px;">Sœur de Lucie Roger</div>
+        </div>
+        <div class="connecteur-bas"></div>
+        <div class="rangee-enfants">
+
+          <div class="enfant-col">
+            <div class="connecteur-haut"></div>
+            <div class="boite">
+              <div class="boite-nom">Philippe Lutz</div>
+              <div class="boite-epoux">× Annie (à confirmer)</div>
+            </div>
+            <div class="connecteur-bas"></div>
+            <div class="rangee-enfants">
+              <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Florence Lutz</div></div></div>
+              <div class="enfant-col"><div class="connecteur-haut"></div><div class="boite"><div class="boite-nom">Céline Lutz</div></div></div>
+            </div>
+          </div>
+
+          <div class="enfant-col">
+            <div class="connecteur-haut"></div>
+            <div class="boite decede">
+              <div class="boite-nom">Danielle Lutz <span class="dagger">†</span></div>
+              <div class="boite-epoux">× Jean Vrain <span class="dagger">†</span>2025</div>
+            </div>
+            <div class="connecteur-bas"></div>
+            <div class="rangee-enfants">
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite">
+                  <div class="boite-nom">Gilles Vrain</div>
+                  <div class="boite-maison"><a href="village.html">→ Le Moulin</a></div>
+                </div>
+              </div>
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite">
+                  <div class="boite-nom">Floriane Vrain</div>
+                  <div class="boite-maison"><a href="village.html">→ rue du Lavoir</a></div>
+                </div>
+              </div>
+              <div class="enfant-col">
+                <div class="connecteur-haut"></div>
+                <div class="boite">
+                  <div class="boite-nom">Éric Vrain</div>
+                  <div class="boite-maison"><a href="village.html">→ rue du Lavoir</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="note-bas">† = décédé(e) · × = marié(e) à · <a href="contribuer.html" style="color:#a08060;">Compléter ou corriger →</a></div>
+
+  </div>
+
+
+  <section class="nl-section">
+    <div class="nl-inner">
+      <p class="nl-titre">La lettre de Notre Steuph</p>
+      <p class="nl-sous">Actualités du village, mémoires des familles — quelques fois par an.</p>
+      <form class="nl-form" action="https://notresteuph.us18.list-manage.com/subscribe/post?u=fa550661a90b200a66fa59c49&amp;id=3fd95c1ff8" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" class="nl-input" placeholder="Votre adresse e-mail" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_fa550661a90b200a66fa59c49_3fd95c1ff8" tabindex="-1" value=""></div>
+        <button type="submit" class="nl-btn">S'inscrire</button>
+      </form>
+      <p class="nl-note">Jamais de spam · Désinscription en un clic.</p>
+    </div>
+  </section>
+
+  <footer class="pied">
+    <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
+    <p><a href="contribuer.html">Contribuer à ce site</a></p>
+  </footer>
+
+  <script>
+  function toggleMenu() {
+    document.getElementById('menuPanneau').classList.toggle('ouvert');
+    document.getElementById('menuOverlay').classList.toggle('visible');
+    document.getElementById('menuBtn').classList.toggle('actif');
+  }
+  </script>
+</body>
+</html>

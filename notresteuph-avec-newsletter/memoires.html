@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Mémoires — Photos, vidéos et voix de Sainte-Euphémie-sur-Ouvèze | Notre Steuph</title>
+  <meta name="description" content="Photos de famille, vidéos et podcasts de Sainte-Euphémie-sur-Ouvèze. Archives visuelles et sonores du village. Déposez vos souvenirs.">
+  <meta name="keywords" content="photos Sainte-Euphémie-sur-Ouvèze, archives village, témoignages, podcasts, mémoires, Drôme Provençale, photos anciennes">
+  <meta name="author" content="Florence Petrich">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://notresteuph.fr/memoires.html">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notresteuph.fr/memoires.html">
+  <meta property="og:title" content="Mémoires — Photos, vidéos et voix de Sainte-Euphémie-sur-Ouvèze">
+  <meta property="og:description" content="Photos de famille, vidéos et podcasts du village. Déposez vos souvenirs.">
+  <meta property="og:image" content="https://notresteuph.fr/images/accueil.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Notre Steuph">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mémoires — Photos, vidéos et voix de Sainte-Euphémie-sur-Ouvèze">
+  <meta name="twitter:description" content="Photos de famille, vidéos et podcasts du village. Déposez vos souvenirs.">
+  <meta name="twitter:image" content="https://notresteuph.fr/images/accueil.jpg">
+
+  <!-- GEO -->
+  <meta name="geo.region" content="FR-26">
+  <meta name="geo.placename" content="Sainte-Euphémie-sur-Ouvèze">
+  <meta name="geo.position" content="44.2833;5.1167">
+  <meta name="ICBM" content="44.2833, 5.1167">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .onglets { display: flex; border-bottom: 0.5px solid rgba(90,74,53,0.2); padding: 0 32px; gap: 0; }
+    .onglet { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #7a6850; padding: 16px 24px; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; font-family: 'Jost', sans-serif; }
+    .onglet:hover { color: #2e2416; }
+    .onglet.actif { color: #2e2416; border-bottom-color: #D4A050; }
+    .section-contenu { display: none; padding: 40px 32px; }
+    .section-contenu.visible { display: block; }
+    .diaporama-wrapper { position: relative; width: 100%; max-width: 800px; margin: 0 auto 40px; }
+    .diaporama { position: relative; height: 480px; background: #2e2416; border-radius: 4px; overflow: hidden; }
+    .diapo { display: none; width: 100%; height: 100%; object-fit: cover; }
+    .diapo.active { display: block; }
+    .diapo-legende { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(46,36,22,0.85), transparent); padding: 24px 24px 16px; color: white; font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; }
+    .diapo-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 12px; pointer-events: none; }
+    .diapo-btn { pointer-events: all; background: rgba(245,239,228,0.85); border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; color: #2e2416; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .diapo-btn:hover { background: white; }
+    .diapo-compteur { position: absolute; top: 12px; right: 16px; background: rgba(46,36,22,0.6); color: white; font-size: 11px; padding: 4px 10px; border-radius: 20px; font-family: 'Jost', sans-serif; }
+    .diapo-miniatures { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .diapo-mini { width: 72px; height: 48px; object-fit: cover; border-radius: 2px; cursor: pointer; opacity: 0.6; transition: opacity 0.2s; border: 2px solid transparent; }
+    .diapo-mini.active { opacity: 1; border-color: #D4A050; }
+    .albums-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 40px; }
+    .album-card { border: 0.5px solid rgba(90,74,53,0.2); border-radius: 4px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .album-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(46,36,22,0.1); }
+    .album-cover { height: 140px; background: #C4B49A; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+    .album-info { padding: 12px 14px; }
+    .album-nom { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #2e2416; display: block; }
+    .album-det { font-size: 12px; color: #7a6850; margin-top: 2px; }
+    .upload-zone { border: 1.5px dashed #C4A882; border-radius: 4px; padding: 32px; text-align: center; margin-bottom: 32px; cursor: pointer; transition: background 0.2s; }
+    .upload-zone:hover { background: #EDE4D6; }
+    .upload-icon { font-size: 32px; margin-bottom: 10px; }
+    .upload-texte { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #7a6850; }
+    .upload-sous { font-size: 12px; color: #a08060; margin-top: 4px; }
+    .videos-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .video-card { border: 0.5px solid rgba(90,74,53,0.2); border-radius: 4px; overflow: hidden; }
+    .video-thumb { position: relative; height: 160px; background: #2e2416; cursor: pointer; }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+    .video-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .video-play-btn { width: 52px; height: 52px; background: rgba(245,239,228,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: transform 0.2s; }
+    .video-card:hover .video-play-btn { transform: scale(1.1); }
+    .video-info { padding: 12px 14px; }
+    .video-titre { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #2e2416; display: block; }
+    .video-det { font-size: 12px; color: #7a6850; margin-top: 2px; }
+    .video-player { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 4px; margin-bottom: 20px; }
+    .podcast-liste { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .podcast-card { border: 0.5px solid rgba(90,74,53,0.2); border-radius: 4px; padding: 16px 20px; display: flex; gap: 16px; align-items: center; }
+    .podcast-play { width: 44px; height: 44px; border-radius: 50%; background: #D4A050; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: background 0.2s; }
+    .podcast-play:hover { background: #B08030; }
+    .podcast-infos { flex: 1; }
+    .podcast-titre { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #2e2416; display: block; }
+    .podcast-det { font-size: 12px; color: #7a6850; margin-top: 2px; }
+    .podcast-duree { font-size: 11px; color: #a08060; flex-shrink: 0; font-family: 'Jost', sans-serif; }
+    .podcast-barre { width: 100%; height: 3px; background: #E8D9C0; border-radius: 2px; margin-top: 8px; }
+    .podcast-progress { height: 3px; background: #D4A050; border-radius: 2px; width: 0%; }
+    .audio-player { display: none; background: #2e2416; padding: 16px 24px; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; align-items: center; gap: 16px; }
+    .audio-player.visible { display: flex; }
+    .audio-titre-player { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: white; flex: 1; }
+    .audio-fermer { background: none; border: none; color: white; font-size: 20px; cursor: pointer; opacity: 0.6; }
+    .vide { text-align: center; padding: 60px 20px; color: #a08060; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; }
+    .vide-btn { display: inline-block; margin-top: 16px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #a08060; border-bottom: 0.5px solid #a08060; text-decoration: none; cursor: pointer; }
+    @media (max-width: 768px) {
+      .onglets { padding: 0 16px; overflow-x: auto; flex-wrap: nowrap; }
+      .onglet { padding: 14px 16px; white-space: nowrap; font-size: 10px; }
+      .section-contenu { padding: 24px 16px; }
+      .diaporama { height: 260px; }
+      .albums-grille { grid-template-columns: 1fr 1fr; }
+      .videos-grille { grid-template-columns: 1fr; }
+    }
+
+    /* --- Newsletter --- */
+    .nl-section{background:#E8D9C0;padding:56px 32px;text-align:center}
+    .nl-inner{max-width:520px;margin:0 auto}
+    .nl-titre{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#2e2416;margin:0 0 10px;letter-spacing:.02em}
+    .nl-sous{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#7a6850;margin:0 0 28px}
+    .nl-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+    .nl-input{padding:13px 18px;border:.5px solid rgba(90,74,53,.35);background:#F5EFE4;border-radius:2px;font-family:'Jost',sans-serif;font-size:14px;color:#2e2416;width:270px;outline:none;transition:border-color .2s}
+    .nl-input:focus{border-color:#D4A050}
+    .nl-btn{padding:13px 28px;background:#2e2416;color:#F5EFE4;border:none;border-radius:2px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s}
+    .nl-btn:hover{background:#D4A050}
+    .nl-note{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:#a08060;margin:14px 0 0}
+    @media(max-width:520px){.nl-input,.nl-btn{width:100%}}
+  </style>
+</head>
+<body>
+  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span><span></span><span></span><span></span></button>
+  <nav class="menu-panneau" id="menuPanneau">
+    <button class="menu-fermer" onclick="toggleMenu()">×</button>
+    <ul class="menu-liste">
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="village.html">Le village</a></li>
+      <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="patrimoine.html">Notre patrimoine</a></li>
+      <li><a href="vie.html">La vie du village</a></li>
+      <li><a href="contribuer.html">Contribuer</a></li>
+    </ul>
+    <div class="menu-bas"><a href="contribuer.html">Déposer un souvenir</a></div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <div class="page-header">
+    <a href="index.html" class="page-retour">← Accueil</a>
+    <h1 class="page-titre">Mémoires</h1>
+    <p class="page-sous">Photos, vidéos et voix du village</p>
+  </div>
+
+  <div class="onglets">
+    <div class="onglet actif" onclick="afficherSection('photos', this)">Photos</div>
+    <div class="onglet" onclick="afficherSection('videos', this)">Vidéos</div>
+    <div class="onglet" onclick="afficherSection('podcasts', this)">Podcasts & voix</div>
+    <div class="onglet" onclick="afficherSection('deposer', this)">Déposer un souvenir</div>
+  </div>
+
+  <div class="section-contenu visible" id="section-photos">
+    <div class="diaporama-wrapper">
+      <div class="diaporama" id="diaporama">
+        <img class="diapo active" src="images/accueil.jpg" alt="Le Grand Portail" />
+        <img class="diapo" src="images/maison_anouk.jpg" alt="Maison Anouk — Rue du Lavoir" />
+        <img class="diapo" src="images/maison_cure.jpg" alt="La Cure — Pierre Touchant" />
+        <div class="diapo-legende" id="diapo-legende">Le Grand Portail fleuri</div>
+        <div class="diapo-nav">
+          <button class="diapo-btn" onclick="changerDiapo(-1)">‹</button>
+          <button class="diapo-btn" onclick="changerDiapo(1)">›</button>
+        </div>
+        <div class="diapo-compteur" id="diapo-compteur">1 / 3</div>
+      </div>
+      <div class="diapo-miniatures" id="miniatures">
+        <img class="diapo-mini active" src="images/accueil.jpg" onclick="allerDiapo(0)" />
+        <img class="diapo-mini" src="images/maison_anouk.jpg" onclick="allerDiapo(1)" />
+        <img class="diapo-mini" src="images/maison_cure.jpg" onclick="allerDiapo(2)" />
+      </div>
+    </div>
+    <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#7a6850; margin-bottom:16px;">Albums</div>
+    <div class="albums-grille">
+      <div class="album-card">
+        <div class="album-cover">🏡</div>
+        <div class="album-info">
+          <span class="album-nom">Le village aujourd'hui</span>
+          <span class="album-det">3 photos · 2026</span>
+        </div>
+      </div>
+      <div class="album-card" style="opacity:0.5;">
+        <div class="album-cover">📸</div>
+        <div class="album-info">
+          <span class="album-nom">Archives familiales</span>
+          <span class="album-det">À compléter</span>
+        </div>
+      </div>
+      <div class="album-card" style="opacity:0.5;">
+        <div class="album-cover">🌿</div>
+        <div class="album-info">
+          <span class="album-nom">La vie du village</span>
+          <span class="album-det">À compléter</span>
+        </div>
+      </div>
+      <div class="album-card" style="opacity:0.5;">
+        <div class="album-cover">👴</div>
+        <div class="album-info">
+          <span class="album-nom">Portraits</span>
+          <span class="album-det">À compléter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-contenu" id="section-videos">
+    <div class="vide">
+      Aucune vidéo pour l'instant.<br>
+      <span class="vide-btn" onclick="afficherSection('deposer', null)">→ Déposer une vidéo</span>
+    </div>
+  </div>
+
+  <div class="section-contenu" id="section-podcasts">
+    <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#7a6850; margin-bottom:20px;">Voix du village</div>
+    <div class="podcast-liste">
+      <div class="podcast-card" style="opacity:0.5; pointer-events:none;">
+        <button class="podcast-play">▶</button>
+        <div class="podcast-infos">
+          <span class="podcast-titre">Marcel Brusset — La mémoire agricole</span>
+          <span class="podcast-det">À enregistrer · Famille Brusset</span>
+          <div class="podcast-barre"><div class="podcast-progress"></div></div>
+        </div>
+        <span class="podcast-duree">—:——</span>
+      </div>
+    </div>
+    <div class="vide">
+      Les voix du village arrivent bientôt.<br>
+      <span class="vide-btn" onclick="afficherSection('deposer', null)">→ Proposer un témoignage</span>
+    </div>
+  </div>
+
+  <div class="section-contenu" id="section-deposer">
+    <p style="font-family:'Cormorant Garamond',serif; font-size:18px; color:#3a2e20; margin-bottom:28px; max-width:560px;">Vous avez des photos, une vidéo ou un souvenir à partager ? Déposez-les ici — ils rejoindront la mémoire collective de Steuph.</p>
+    <div class="upload-zone" onclick="document.getElementById('file-input').click()">
+      <div class="upload-icon">📷</div>
+      <div class="upload-texte">Glissez vos photos ici</div>
+      <div class="upload-sous">JPG, PNG, MP4, MP3 · Max 50 Mo</div>
+      <input type="file" id="file-input" style="display:none" multiple accept="image/*,video/*,audio/*" onchange="afficherFichiers(this)">
+    </div>
+    <div id="fichiers-selectionnes" style="margin-bottom:24px;"></div>
+    <div style="margin-bottom:16px;">
+      <label style="font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7a6850; display:block; margin-bottom:8px;">Votre nom</label>
+      <input type="text" placeholder="Prénom Nom" style="width:100%; max-width:400px; padding:10px 14px; border:0.5px solid rgba(90,74,53,0.3); background:#F5EFE4; border-radius:2px; font-family:'Jost',sans-serif; font-size:14px; color:#2e2416;">
+    </div>
+    <div style="margin-bottom:16px;">
+      <label style="font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7a6850; display:block; margin-bottom:8px;">Description</label>
+      <textarea placeholder="De quoi s'agit-il ? Quand, où, qui ?" style="width:100%; max-width:560px; height:100px; padding:10px 14px; border:0.5px solid rgba(90,74,53,0.3); background:#F5EFE4; border-radius:2px; font-family:'Cormorant Garamond',serif; font-size:16px; color:#2e2416; resize:vertical;"></textarea>
+    </div>
+    <button style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; background:#2e2416; color:white; border:none; padding:14px 32px; border-radius:2px; cursor:pointer;">Envoyer</button>
+    <p style="font-size:12px; color:#a08060; margin-top:16px; font-style:italic;">Chaque souvenir est vérifié avant publication.</p>
+  </div>
+
+  <div class="audio-player" id="audioPlayer">
+    <span class="audio-titre-player" id="audioTitre">—</span>
+    <button class="audio-fermer" onclick="fermerPlayer()">×</button>
+  </div>
+
+
+  <section class="nl-section">
+    <div class="nl-inner">
+      <p class="nl-titre">La lettre de Notre Steuph</p>
+      <p class="nl-sous">Actualités du village, mémoires des familles — quelques fois par an.</p>
+      <form class="nl-form" action="https://notresteuph.us18.list-manage.com/subscribe/post?u=fa550661a90b200a66fa59c49&amp;id=3fd95c1ff8" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" class="nl-input" placeholder="Votre adresse e-mail" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_fa550661a90b200a66fa59c49_3fd95c1ff8" tabindex="-1" value=""></div>
+        <button type="submit" class="nl-btn">S'inscrire</button>
+      </form>
+      <p class="nl-note">Jamais de spam · Désinscription en un clic.</p>
+    </div>
+  </section>
+
+  <footer class="pied">
+    <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
+    <p><a href="contribuer.html">Contribuer à ce site</a></p>
+  </footer>
+
+  <script>
+  function afficherSection(id, el) {
+    document.querySelectorAll('.section-contenu').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('.onglet').forEach(o => o.classList.remove('actif'));
+    document.getElementById('section-' + id).classList.add('visible');
+    if (el) el.classList.add('actif');
+  }
+
+  const legendes = ["Le Grand Portail fleuri", "Maison Anouk — Rue du Lavoir", "La Cure — Pierre Touchant"];
+  let diapoActuelle = 0;
+
+  function allerDiapo(n) {
+    const diapos = document.querySelectorAll('.diapo');
+    const minis = document.querySelectorAll('.diapo-mini');
+    diapos[diapoActuelle].classList.remove('active');
+    minis[diapoActuelle].classList.remove('active');
+    diapoActuelle = (n + diapos.length) % diapos.length;
+    diapos[diapoActuelle].classList.add('active');
+    minis[diapoActuelle].classList.add('active');
+    document.getElementById('diapo-legende').textContent = legendes[diapoActuelle];
+    document.getElementById('diapo-compteur').textContent = (diapoActuelle + 1) + ' / ' + diapos.length;
+  }
+
+  function changerDiapo(dir) { allerDiapo(diapoActuelle + dir); }
+  setInterval(() => changerDiapo(1), 5000);
+
+  function afficherFichiers(input) {
+    const zone = document.getElementById('fichiers-selectionnes');
+    zone.innerHTML = '';
+    Array.from(input.files).forEach(f => {
+      const div = document.createElement('div');
+      div.style.cssText = 'font-size:13px; color:#7a6850; padding:4px 0; font-family:Jost,sans-serif;';
+      div.textContent = '✓ ' + f.name;
+      zone.appendChild(div);
+    });
+  }
+
+  function fermerPlayer() { document.getElementById('audioPlayer').classList.remove('visible'); }
+
+  function toggleMenu() {
+    document.getElementById('menuPanneau').classList.toggle('ouvert');
+    document.getElementById('menuOverlay').classList.toggle('visible');
+    document.getElementById('menuBtn').classList.toggle('actif');
+  }
+  </script>
+</body>
+</html>
