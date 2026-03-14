@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histoire — Notre Steuph</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </button>
+  <nav class="menu-panneau" id="menuPanneau">
+    <button class="menu-fermer" onclick="toggleMenu()">×</button>
+    <ul class="menu-liste">
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="village.html">Le village</a></li>
+      <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="patrimoine.html">Notre patrimoine</a></li>
+      <li><a href="vie.html">La vie du village</a></li>
+      <li><a href="contribuer.html">Contribuer</a></li>
+    </ul>
+    <div class="menu-bas">
+      <a href="contribuer.html">Déposer un souvenir</a>
+    </div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <div class="page-header">
+    <a href="index.html" class="page-retour">← Accueil</a>
+    <h1 class="page-titre">Histoire</h1>
+    <p class="page-sous">800 ans de mémoire</p>
+  </div>
+
+  <div style="padding: 48px 32px; max-width: 720px;">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:20px; line-height:1.8; color:#3a2e20;">
+
+      <div style="display:flex; gap:24px; margin-bottom:32px; align-items:flex-start;">
+        <div style="min-width:80px; font-size:13px; color:#a08060; padding-top:4px; text-align:right;">Moyen-Âge</div>
+        <div>Fondé par les Templiers, village perché dans le rocher Saint-Mathieu (800m).</div>
+      </div>
+      <div style="display:flex; gap:24px; margin-bottom:32px; align-items:flex-start;">
+        <div style="min-width:80px; font-size:13px; color:#a08060; padding-top:4px; text-align:right;">XIVe s.</div>
+        <div>Le village descend de son rocher. Fortifications rectangulaires.</div>
+      </div>
+      <div style="display:flex; gap:24px; margin-bottom:32px; align-items:flex-start;">
+        <div style="min-width:80px; font-size:13px; color:#a08060; padding-top:4px; text-align:right;">XVe s.</div>
+        <div>L'église est rebâtie et dédiée à sainte Euphémie. Le village prend son nom définitif.</div>
+      </div>
+      <div style="display:flex; gap:24px; margin-bottom:32px; align-items:flex-start;">
+        <div style="min-width:80px; font-size:13px; color:#a08060; padding-top:4px; text-align:right;">1633</div>
+        <div>Louis XIII offre le village aux Grimaldi de Monaco.</div>
+      </div>
+      <div style="display:flex; gap:24px; margin-bottom:32px; align-items:flex-start;">
+        <div style="min-width:80px; font-size:13px; color:#a08060; padding-top:4px; text-align:right;">1732</div>
+        <div>Le mûrier de la placette est planté — encore là aujourd'hui.</div>
+      </div>
+      <div style="display:flex; gap:24px; margin-bottom:32px; align-items:flex-start;">
+        <div style="min-width:80px; font-size:13px; color:#a08060; padding-top:4px; text-align:right;">1827</div>
+        <div>Construction du temple protestant. Cloche datée de 1948.</div>
+      </div>
+      <div style="display:flex; gap:24px; margin-bottom:32px; align-items:flex-start;">
+        <div style="min-width:80px; font-size:13px; color:#a08060; padding-top:4px; text-align:right;">XXe s.</div>
+        <div>Gilbert Ducros (fondateur Ducros épices) naît à Steuph.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="pied">
+    <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
+    <p><a href="contribuer.html">Contribuer à ce site</a></p>
+  </footer>
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuPanneau').classList.toggle('ouvert');
+      document.getElementById('menuOverlay').classList.toggle('visible');
+      document.getElementById('menuBtn').classList.toggle('actif');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notre Steuph — Mémoires d'un village</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MENU HAMBURGER -->
+  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </button>
+
+  <!-- PANNEAU MENU -->
+  <nav class="menu-panneau" id="menuPanneau">
+    <button class="menu-fermer" onclick="toggleMenu()">×</button>
+    <ul class="menu-liste">
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="village.html">Le village</a></li>
+      <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="patrimoine.html">Notre patrimoine</a></li>
+      <li><a href="vie.html">La vie du village</a></li>
+      <li><a href="contribuer.html">Contribuer</a></li>
+    </ul>
+    <div class="menu-bas">
+      <a href="contribuer.html">Déposer un souvenir</a>
+      <a href="espace-prive.html">Espace privé</a>
+    </div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- PAGE D'ACCUEIL -->
+  <main class="accueil">
+    <div class="hero-photo">
+      <img src="images/accueil.jpg" alt="Le Grand Portail de Sainte-Euphémie-sur-Ouvèze" />
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-texte">
+      <h1 class="hero-titre">Notre<br><em>Steuph</em></h1>
+      <p class="hero-sous">Mémoires d'un village</p>
+    </div>
+    <div class="hero-scroll">↓</div>
+  </main>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="intro-inner">
+      <p class="intro-texte">On peut se sentir d'ici sans y vivre. Ce site est né de cet attachement — celui des familles qui ont grandi à Steuph, qui y reviennent, qui y ont leurs morts et leurs racines, qui s'y installent, qui y séjournent. Un village de la Drôme Provençale, quatre-vingts âmes en hiver, beaucoup plus au fil des saisons, des siècles de mémoire.</p>
+      <div class="intro-liens">
+        <a href="village.html" class="intro-lien">Découvrir le village</a>
+        <a href="contribuer.html" class="intro-lien intro-lien-secondaire">Contribuer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RUBRIQUES -->
+  <section class="rubriques">
+    <a href="histoire.html" class="rubrique">
+      <div class="rubrique-num">01</div>
+      <div class="rubrique-nom">Histoire</div>
+      <div class="rubrique-det">800 ans, les maires, les dates clés</div>
+    </a>
+    <a href="village.html" class="rubrique">
+      <div class="rubrique-num">02</div>
+      <div class="rubrique-nom">Le village</div>
+      <div class="rubrique-det">Les maisons, les familles, la carte</div>
+    </a>
+    <a href="memoires.html" class="rubrique">
+      <div class="rubrique-num">03</div>
+      <div class="rubrique-nom">Mémoires</div>
+      <div class="rubrique-det">Photos, podcasts, témoignages</div>
+    </a>
+    <a href="patrimoine.html" class="rubrique">
+      <div class="rubrique-num">04</div>
+      <div class="rubrique-nom">Notre patrimoine</div>
+      <div class="rubrique-det">Avant/après, état des lieux</div>
+    </a>
+    <a href="vie.html" class="rubrique">
+      <div class="rubrique-num">05</div>
+      <div class="rubrique-nom">La vie du village</div>
+      <div class="rubrique-det">Événements, aux alentours</div>
+    </a>
+    <a href="contribuer.html" class="rubrique">
+      <div class="rubrique-num">06</div>
+      <div class="rubrique-nom">Contribuer</div>
+      <div class="rubrique-det">Déposer photos et souvenirs</div>
+    </a>
+  </section>
+
+  <footer class="pied">
+    <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
+    <p><a href="contribuer.html">Contribuer à ce site</a></p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuPanneau').classList.toggle('ouvert');
+      document.getElementById('menuOverlay').classList.toggle('visible');
+      document.getElementById('menuBtn').classList.toggle('actif');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le village — Notre Steuph</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .carte-container { position: relative; width: 100%; overflow: hidden; }
+    .carte-container img { width: 100%; display: block; }
+    .point { position: absolute; cursor: pointer; transform: translate(-50%, -50%); z-index: 10; }
+    .point-cercle { width: 11px; height: 11px; border-radius: 50%; background: #D4A050; border: 2px solid white; box-shadow: 0 1px 5px rgba(0,0,0,0.6); transition: transform 0.15s; }
+    .point:hover .point-cercle { transform: scale(1.7); background: #B08030; }
+    .point-label { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); background: rgba(46,36,22,0.92); color: white; font-size: 10px; white-space: nowrap; padding: 3px 7px; border-radius: 2px; pointer-events: none; opacity: 0; transition: opacity 0.15s; font-family: 'Jost', sans-serif; }
+    .point:hover .point-label { opacity: 1; }
+    .point.patrimoine .point-cercle { background: #7A9070; }
+    .point.patrimoine:hover .point-cercle { background: #5A7050; }
+    .panneau { display: none; position: fixed; top: 0; right: 0; width: min(400px, 100vw); height: 100vh; background: #F5EFE4; box-shadow: -4px 0 24px rgba(0,0,0,0.15); overflow-y: auto; z-index: 500; }
+    .panneau.visible { display: block; }
+    .panneau-top { position: sticky; top: 0; background: #F5EFE4; padding: 14px 18px; border-bottom: 0.5px solid rgba(90,74,53,0.2); display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+    .panneau-rue { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #7a6850; }
+    .panneau-fermer { font-size: 24px; cursor: pointer; color: #7a6850; background: none; border: none; font-family: 'Cormorant Garamond', serif; line-height: 1; }
+    .panneau-hero { height: 150px; background: #C4B49A; display: flex; align-items: flex-end; position: relative; }
+    .panneau-hero-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(46,36,22,0.65) 0%, transparent 60%); }
+    .panneau-hero-texte { position: relative; z-index: 2; padding: 16px 20px; color: white; }
+    .panneau-hero-titre { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; line-height: 1.1; }
+    .panneau-hero-sous { font-size: 13px; font-style: italic; opacity: 0.82; font-family: 'Cormorant Garamond', serif; margin-top: 2px; }
+    .panneau-corps { padding: 20px; }
+    .panneau-meta { display: flex; border-top: 0.5px solid rgba(90,74,53,0.2); border-bottom: 0.5px solid rgba(90,74,53,0.2); margin-bottom: 20px; }
+    .panneau-meta-item { flex: 1; padding: 10px 0; text-align: center; border-right: 0.5px solid rgba(90,74,53,0.15); }
+    .panneau-meta-item:last-child { border-right: none; }
+    .pm-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #7a6850; display: block; margin-bottom: 3px; }
+    .pm-val { font-size: 13px; color: #2e2416; line-height: 1.3; font-family: 'Cormorant Garamond', serif; }
+    .pm-val.ac { font-style: italic; color: #a08060; font-size: 12px; }
+    .panneau-section { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #7a6850; margin-bottom: 8px; }
+    .panneau-texte { font-family: 'Cormorant Garamond', serif; font-size: 16px; line-height: 1.75; color: #3a2e20; margin-bottom: 14px; }
+    .panneau-texte em { font-style: italic; color: #6a5440; }
+    .panneau-ac { font-size: 13px; font-style: italic; color: #a08060; border: 0.5px dashed #C4A882; border-radius: 3px; padding: 8px 12px; margin-bottom: 14px; font-family: 'Cormorant Garamond', serif; }
+    .panneau-lien { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #a08060; border-bottom: 0.5px solid #a08060; display: inline-block; margin-top: 8px; text-decoration: none; }
+    .podcast-box { background: #E8D9C0; border-left: 2px solid #B09070; border-radius: 3px; padding: 10px 14px; margin-top: 14px; }
+    .podcast-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #7a6850; display: block; margin-bottom: 4px; }
+    .podcast-texte { font-size: 13px; font-style: italic; color: #3a2e20; font-family: 'Cormorant Garamond', serif; }
+    .rues { padding: 40px 32px; }
+    .rue-titre { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 0.5px solid rgba(90,74,53,0.2); }
+    .maisons-liste { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .maison-vignette { width: 148px; cursor: pointer; border: 0.5px solid rgba(90,74,53,0.2); border-radius: 4px; overflow: hidden; transition: box-shadow 0.2s, transform 0.15s; }
+    .maison-vignette:hover { box-shadow: 0 4px 16px rgba(46,36,22,0.12); transform: translateY(-2px); }
+    .maison-img { height: 88px; background: #C4B49A; }
+    .maison-img.gris { background: #9A9080; }
+    .maison-info { padding: 10px 12px; }
+    .maison-nom { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #2e2416; display: block; line-height: 1.3; }
+    .maison-proprio { font-size: 11px; color: #7a6850; display: block; margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()"><span></span><span></span><span></span><span></span><span></span><span></span></button>
+  <nav class="menu-panneau" id="menuPanneau">
+    <button class="menu-fermer" onclick="toggleMenu()">×</button>
+    <ul class="menu-liste">
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="village.html">Le village</a></li>
+      <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="patrimoine.html">Notre patrimoine</a></li>
+      <li><a href="vie.html">La vie du village</a></li>
+      <li><a href="contribuer.html">Contribuer</a></li>
+    </ul>
+    <div class="menu-bas"><a href="contribuer.html">Déposer un souvenir</a></div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <div class="page-header">
+    <a href="index.html" class="page-retour">← Accueil</a>
+    <h1 class="page-titre">Le village</h1>
+    <p class="page-sous">Les maisons, les familles, la mémoire des lieux</p>
+  </div>
+
+  <div style="padding: 24px 32px 0;">
+    <div style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#7a6850; margin-bottom:10px;">Plan du village — cliquez sur un point</div>
+    <div class="carte-container">
+      <img src="images/satellite.png" alt="Vue satellite de Sainte-Euphémie-sur-Ouvèze" />
+
+      <!-- MONUMENT AUX MORTS -->
+      <div class="point patrimoine" style="left:31.5%;top:22.8%" onclick="ouvrirFiche('monument')"><div class="point-cercle"></div><div class="point-label">Monument aux morts</div></div>
+
+      <!-- RUE DU LAVOIR — G L E F P L A (mitoyens, très proches) -->
+      <div class="point" style="left:35.9%;top:29%" onclick="ouvrirFiche('moulin')"><div class="point-cercle"></div><div class="point-label">Le Moulin — Gilles Vrain</div></div>
+      <div class="point" style="left:39.5%;top:29.6%" onclick="ouvrirFiche('obligeois')"><div class="point-cercle"></div><div class="point-label">Maison de l'Obligeois</div></div>
+      <div class="point" style="left:42.5%;top:29.6%" onclick="ouvrirFiche('eric_vrain')"><div class="point-cercle"></div><div class="point-label">Maison Éric Vrain</div></div>
+      <div class="point" style="left:46.1%;top:29.6%" onclick="ouvrirFiche('floriane')"><div class="point-cercle"></div><div class="point-label">Maison Floriane Vrain</div></div>
+      <div class="point" style="left:49.8%;top:29.6%" onclick="ouvrirFiche('praia')"><div class="point-cercle"></div><div class="point-label">Maison Praia</div></div>
+      <div class="point" style="left:53.4%;top:29%" onclick="ouvrirFiche('meme_lucie')"><div class="point-cercle"></div><div class="point-label">Maison de Mémé Lucie</div></div>
+      <div class="point" style="left:58.2%;top:29%" onclick="ouvrirFiche('anouk')"><div class="point-cercle"></div><div class="point-label">Maison Anouk Walter Petrich</div></div>
+
+      <!-- BONFILS — F rouge en haut, en face d'Anouk côté route -->
+      <div class="point" style="left:57.8%;top:13.6%" onclick="ouvrirFiche('bonfils')"><div class="point-cercle"></div><div class="point-label">Maison Bonfils / Fachinetti</div></div>
+
+      <!-- RUE DU LEVANT -->
+      <!-- C = Cure (entre Anouk et église) -->
+      <div class="point" style="left:60%;top:35.8%" onclick="ouvrirFiche('cure')"><div class="point-cercle"></div><div class="point-label">La Cure — Pierre Touchant</div></div>
+      <!-- Église -->
+      <div class="point patrimoine" style="left:63%;top:42%" onclick="ouvrirFiche('eglise')"><div class="point-cercle"></div><div class="point-label">Église Sainte-Euphémie</div></div>
+      <!-- B gauche = Gîte Daniel Brusset -->
+      <div class="point" style="left:60%;top:53.1%" onclick="ouvrirFiche('gite_brusset')"><div class="point-cercle"></div><div class="point-label">Gîte Brusset — Daniel</div></div>
+      <!-- Pierrot, Nathalie, Rosier, Weber, Thomas — descendent depuis gîte Daniel -->
+      <div class="point" style="left:60%;top:59%" onclick="ouvrirFiche('pierrot')"><div class="point-cercle"></div><div class="point-label">Maison Pierrot</div></div>
+      <div class="point" style="left:60%;top:65%" onclick="ouvrirFiche('nathalie')"><div class="point-cercle"></div><div class="point-label">Maison Nathalie — Safran</div></div>
+      <div class="point" style="left:60%;top:71%" onclick="ouvrirFiche('rosier')"><div class="point-cercle"></div><div class="point-label">Maison Rosier — Lise Gruel</div></div>
+      <div class="point" style="left:60%;top:77%" onclick="ouvrirFiche('weber')"><div class="point-cercle"></div><div class="point-label">Maison Weber</div></div>
+      <div class="point" style="left:60%;top:83%" onclick="ouvrirFiche('thomas_klein')"><div class="point-cercle"></div><div class="point-label">Maison Thomas / Klein</div></div>
+      <!-- Temple -->
+      <div class="point patrimoine" style="left:66.6%;top:88%" onclick="ouvrirFiche('temple')"><div class="point-cercle"></div><div class="point-label">Le Temple</div></div>
+
+      <!-- GRAND PORTAIL -->
+      <!-- P = Pasquet (haut droite) -->
+      <div class="point" style="left:79.1%;top:20.4%" onclick="ouvrirFiche('pasquet')"><div class="point-cercle"></div><div class="point-label">Maison Pasquet — Christophe</div></div>
+      <!-- B droite = Marcel Brusset -->
+      <div class="point" style="left:75.4%;top:56.2%" onclick="ouvrirFiche('brusset')"><div class="point-cercle"></div><div class="point-label">Maison Brusset — Marcel</div></div>
+      <!-- B Christine — sous le P de Portail -->
+      <div class="point" style="left:80.2%;top:40.1%" onclick="ouvrirFiche('christine_brusset')"><div class="point-cercle"></div><div class="point-label">Maison Christine Brusset</div></div>
+
+      <!-- MAIRIE -->
+      <div class="point patrimoine" style="left:35.9%;top:93%" onclick="ouvrirFiche('mairie')"><div class="point-cercle"></div><div class="point-label">Mairie</div></div>
+
+      <!-- LAVOIR -->
+      <div class="point patrimoine" style="left:57%;top:22%" onclick="ouvrirFiche('lavoir')"><div class="point-cercle"></div><div class="point-label">Le Lavoir</div></div>
+
+    </div>
+    <div style="display:flex;gap:20px;margin-top:10px;flex-wrap:wrap;font-family:'Jost',sans-serif;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#7a6850;"><div style="width:10px;height:10px;border-radius:50%;background:#D4A050;border:1.5px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div> Maison</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#7a6850;"><div style="width:10px;height:10px;border-radius:50%;background:#7A9070;border:1.5px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div> Patrimoine</div>
+    </div>
+  </div>
+
+  <!-- LISTE PAR RUES -->
+  <div class="rues">
+    <div class="rue-titre">Rue du Lavoir</div>
+    <div class="maisons-liste">
+      <div class="maison-vignette" onclick="ouvrirFiche('moulin')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Le Moulin</span><span class="maison-proprio">Gilles Vrain</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('obligeois')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison de l'Obligeois</span><span class="maison-proprio">Anc. père Moulard</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('eric_vrain')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Éric Vrain</span><span class="maison-proprio">Éric Vrain</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('floriane')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Floriane Vrain</span><span class="maison-proprio">Floriane Vrain</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('praia')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Praia</span><span class="maison-proprio">Anc. café — logements sociaux</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('meme_lucie')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison de Mémé Lucie</span><span class="maison-proprio">Indivision 5 sœurs Gruel</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('anouk')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Anouk</span><span class="maison-proprio">Anouk Walter Petrich</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('bonfils')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Bonfils</span><span class="maison-proprio">Côté route</span></div></div>
+    </div>
+    <div class="rue-titre">Rue du Levant</div>
+    <div class="maisons-liste">
+      <div class="maison-vignette" onclick="ouvrirFiche('cure')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">La Cure</span><span class="maison-proprio">Pierre Touchant</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('eglise')"><div class="maison-img gris"></div><div class="maison-info"><span class="maison-nom">Église Sainte-Euphémie</span><span class="maison-proprio">Patrimoine</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('gite_brusset')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Gîte Brusset</span><span class="maison-proprio">Daniel Brusset</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('pierrot')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Pierrot</span><span class="maison-proprio">Locataire</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('nathalie')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Nathalie</span><span class="maison-proprio">Laure Jubés — Safran</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('rosier')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Rosier</span><span class="maison-proprio">Lise Gruel</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('weber')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Weber</span><span class="maison-proprio">Anc. Maison Julien</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('thomas_klein')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Thomas/Klein</span><span class="maison-proprio">Anc. Maison Bonnet</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('temple')"><div class="maison-img gris"></div><div class="maison-info"><span class="maison-nom">Le Temple</span><span class="maison-proprio">+ logement mairie</span></div></div>
+    </div>
+    <div class="rue-titre">Le Grand Portail</div>
+    <div class="maisons-liste">
+      <div class="maison-vignette" onclick="ouvrirFiche('pasquet')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Pasquet</span><span class="maison-proprio">Christophe & Elisa</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('brusset')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Brusset</span><span class="maison-proprio">Marcel Brusset</span></div></div>
+      <div class="maison-vignette" onclick="ouvrirFiche('christine_brusset')"><div class="maison-img"></div><div class="maison-info"><span class="maison-nom">Maison Christine Brusset</span><span class="maison-proprio">Christine Brusset</span></div></div>
+    </div>
+  </div>
+
+  <div class="panneau" id="panneau">
+    <div class="panneau-top"><span class="panneau-rue" id="p-rue"></span><button class="panneau-fermer" onclick="fermerPanneau()">×</button></div>
+    <div class="panneau-hero" id="p-hero"><div class="panneau-hero-gradient"></div><div class="panneau-hero-texte"><div class="panneau-hero-titre" id="p-titre"></div><div class="panneau-hero-sous" id="p-sous"></div></div></div>
+    <div class="panneau-corps" id="p-corps"></div>
+  </div>
+
+  <footer class="pied">
+    <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
+    <p><a href="contribuer.html">Contribuer à ce site</a></p>
+  </footer>
+
+  <script>
+  const fiches = {
+    monument:{rue:"Route principale",titre:"Monument aux morts",sous:"Dans le virage, en entrant dans le village",proprio:"Commune",ancien:"—",date:"à compléter",histoire:`Le monument aux morts, dans le virage de la route principale en entrant dans le village.`,ac:"→ Noms inscrits, date à compléter."},
+    moulin:{rue:"Rue du Lavoir",titre:"Le Moulin",sous:"Gilles Vrain",proprio:"Gilles Vrain",ancien:"Jean Vrain †2025",date:"à compléter",histoire:`Sous le monument aux morts. Une plaque rappelle : <em>"le moulin de mon père"</em>.`,ac:"→ Histoire à compléter."},
+    obligeois:{rue:"Rue du Lavoir",titre:"Maison de l'Obligeois",sous:"Ancienne maison père Moulard",proprio:"à compléter",ancien:"Père Moulard",date:"à compléter",histoire:`Anciennement connue comme la maison du père Moulard.`,ac:"→ Propriétaire actuel et histoire à compléter."},
+    eric_vrain:{rue:"Rue du Lavoir",titre:"Maison Éric Vrain",sous:"Éric Vrain",proprio:"Éric Vrain",ancien:"à compléter",date:"à compléter",histoire:`Maison de la famille Vrain, rue du Lavoir.`,ac:"→ Histoire à compléter."},
+    floriane:{rue:"Rue du Lavoir",titre:"Maison Floriane Vrain",sous:"Ancienne maison Villet",proprio:"Floriane Vrain / Lesueur",ancien:"Famille Villet",date:"à compléter",histoire:`Ancienne maison Villet, aujourd'hui propriété de Floriane Vrain.`,ac:"→ Histoire à compléter."},
+    praia:{rue:"Rue du Lavoir",titre:"Maison Praia",sous:"Ancien café — 3 logements sociaux",proprio:"Mairie",ancien:"Famille Praia",date:"à compléter",histoire:`C'était <em>le café du village</em>. Laissée à l'abandon, rachetée par la mairie, transformée en trois logements sociaux.`,ac:"→ Histoire du café Praia à compléter."},
+    meme_lucie:{rue:"Rue du Lavoir",titre:"Maison de Mémé Lucie",sous:"Indivision des 5 sœurs Gruel",proprio:"5 sœurs Gruel",ancien:"Lucie Roger × Antoine Gruel",date:"à compléter",histoire:`C'est la maison de Mémé Lucie. Lucie Roger, épouse Antoine Gruel, a élevé ses cinq filles ici. Quand elle est partie, personne n'a voulu vendre — <em>Lucette, Lise, Liliane, Brigitte et Chantal</em> — une indivision qui dit plus sur l'attachement à Steuph que n'importe quel acte notarié.`,genea:"Voir la généalogie complète Gruel-Roger →"},
+    anouk:{rue:"Angle rue du Lavoir — rue du Levant",titre:"Maison Anouk Walter Petrich",sous:"Anouk Walter Petrich",proprio:"Anouk Walter Petrich",ancien:"Nanon Pelincq",date:"à compléter",photo:"images/maison_anouk.jpg",histoire:`Maison à l'angle de la rue du Lavoir et de la rue du Levant. Elle appartenait à <em>Nanon Pelincq</em> avant d'être acquise par <em>Anouk Walter Petrich</em>, fille de Florence Petrich — cinquième génération de la famille Gruel à Steuph.`,genea:"Voir la généalogie complète Gruel-Roger →"},
+    bonfils:{rue:"Côté route — en face d'Anouk",titre:"Maison Bonfils / Fachinetti",sous:"Entrée sur la route",proprio:"à compléter",ancien:"Jacky & Maggy Bonfils → M. Fachinetti †",date:"à compléter",histoire:`En face de la maison d'Anouk, entrée côté route. <em>Jacky et Maggy Bonfils</em> y avaient tenté une pizzeria. Puis M. Fachinetti †.`,ac:"→ Histoire complète à compléter."},
+    lavoir:{rue:"Rue du Lavoir",titre:"Le Lavoir",sous:"En face de l'escalier en pierre d'Anouk",proprio:"Commune",ancien:"—",date:"à compléter",histoire:`Le lavoir du village, en face de l'escalier en pierre de la maison d'Anouk.`,ac:"→ Histoire à compléter."},
+    cure:{rue:"Rue du Levant",titre:"La Cure",sous:"Pierre Touchant",proprio:"Pierre Touchant",ancien:"à compléter",date:"à compléter",photo:"images/maison_cure.jpg",histoire:`La cure du village, habitée par <em>Pierre Touchant</em> et ses deux enfants.`,ac:"→ Histoire à compléter."},
+    eglise:{rue:"Rue du Levant",titre:"Église Sainte-Euphémie",sous:"Patrimoine du village",proprio:"Commune",ancien:"—",date:"XVe siècle",histoire:`L'église donne son nom au village. Dédiée à <em>sainte Euphémie</em>, martyre du IVe siècle, rebâtie au XVe siècle.`,ac:"→ État actuel, mobilier, cloche à compléter."},
+    gite_brusset:{rue:"Rue du Levant — angle",titre:"Gîte Brusset",sous:"Daniel Brusset",proprio:"Daniel Brusset",ancien:"à compléter",date:"à compléter",histoire:`Propriété de <em>Daniel Brusset</em>, fils de Marcel. Ce bâtiment n'était pas un gîte à l'origine.`,ac:"→ Ancienne fonction à compléter."},
+    pierrot:{rue:"Rue du Levant",titre:"Maison Pierrot",sous:"Locataire",proprio:"à compléter",ancien:"à compléter",date:"à compléter",histoire:`Maison habitée par <em>Pierrot</em>, locataire.`,ac:"→ Nom de famille, propriétaire, histoire à compléter."},
+    nathalie:{rue:"Rue du Levant",titre:"Maison Nathalie",sous:"Culture du safran",proprio:"Laure Jubés",ancien:"Laure Jubés",date:"à compléter",histoire:`La maison appartient à <em>Laure Jubés</em>, qui l'a laissée à <em>Nathalie</em>. Celle-ci cultive le safran.`,ac:"→ Nom de famille de Nathalie à compléter."},
+    rosier:{rue:"Rue du Levant",titre:"Maison Rosier",sous:"Lise Gruel × Jean-Pierre Rosier †",proprio:"Lise Gruel",ancien:"à compléter",date:"à compléter",histoire:`Maison de <em>Lise Gruel</em>, une des cinq filles de Mémé Lucie. Elle a épousé <em>Jean-Pierre Rosier †</em>. Quatre enfants : <em>Valérie, Nicolas, Marine et Guillaume</em>.`,genea:"Voir la généalogie complète Gruel-Roger →"},
+    weber:{rue:"Rue du Levant",titre:"Maison Weber",sous:"Ancienne Maison Julien",proprio:"Nicolas Weber",ancien:"Famille Julien",date:"à compléter",histoire:`Anciennement la <em>maison Julien</em> — une des grandes familles d'agriculteurs du pays. Le fils Yves Julien a été maire de Steuph.`,ac:"→ Histoire à approfondir."},
+    thomas_klein:{rue:"Rue du Levant",titre:"Maison Thomas/Klein",sous:"Ancienne Maison Bonnet",proprio:"Émilie Thomas/Klein",ancien:"Famille Bonnet (15 enfants !)",date:"à compléter",histoire:`Anciennement la <em>maison Bonnet</em> — une famille de quinze enfants ! Aujourd'hui propriété d'<em>Émilie Thomas/Klein</em>, petite-fille de Mémé Lucie par <em>Brigitte Gruel</em>.`,genea:"Voir la généalogie complète Gruel-Roger →"},
+    temple:{rue:"Rue du Levant",titre:"Le Temple",sous:"Temple protestant + logement mairie",proprio:"Commune + mairie",ancien:"Protestants de Sainte-Euphémie",date:"1827",histoire:`Temple protestant construit en 1827. Cloche : <em>"J'appartiens aux protestants de Sainte-Euphémie - Drôme, 1948"</em>. Porte du temple distincte du logement mairie au-dessus.`,ac:"→ Histoire complète, caves à compléter."},
+    pasquet:{rue:"Le Grand Portail",titre:"Maison Pasquet",sous:"Christophe & Elisa Pasquet",proprio:"Christophe & Elisa Pasquet",ancien:"Père Martin → Chantal Gruel †",date:"à compléter",histoire:`Acquise par <em>Chantal Gruel †</em> auprès du père Martin. Aujourd'hui propriété de <em>Christophe et Elisa Pasquet</em>. Christophe possède deux granges attenantes, en face desquelles se trouve la maison de Marcel Brusset.`,ac:"→ Qui était le père Martin ?",genea:"Voir la généalogie complète Gruel-Roger →"},
+    brusset:{rue:"Le Grand Portail",titre:"Maison Brusset",sous:"Marcel Brusset",proprio:"Marcel Brusset",ancien:"à compléter",date:"à compléter",histoire:`Les Brusset sont une des familles cultivatrices historiques de Steuph. <em>Marcel Brusset</em>, encore vivant, est l'une des dernières mémoires agricoles du village.`,ac:"→ Histoire à compléter.",podcast:"Marcel Brusset est un candidat prioritaire pour un podcast ou une interview."},
+    christine_brusset:{rue:"Le Grand Portail",titre:"Maison Christine Brusset",sous:"Christine Brusset, fille de Marcel",proprio:"Christine Brusset",ancien:"à compléter",date:"à compléter",histoire:`Maison de <em>Christine Brusset</em>, fille de Marcel Brusset. Elle habite dans le village, en face du gîte de son frère Daniel.`,ac:"→ Histoire à compléter."},
+    mairie:{rue:"Le Grand Portail",titre:"La Mairie",sous:"Commune de Sainte-Euphémie-sur-Ouvèze",proprio:"Commune",ancien:"—",date:"à compléter",histoire:`La mairie de Sainte-Euphémie-sur-Ouvèze.`,ac:"→ Histoire du bâtiment à compléter."}
+  };
+
+  function ouvrirFiche(id) {
+    const f = fiches[id]; if (!f) return;
+    document.getElementById('p-rue').textContent = f.rue;
+    document.getElementById('p-titre').textContent = f.titre;
+    document.getElementById('p-sous').textContent = f.sous;
+    const hero = document.getElementById('p-hero');
+    if (f.photo) {
+      hero.style.background = `url(${f.photo}) center/cover no-repeat`;
+    } else {
+      hero.style.background = '#C4B49A';
+    }
+    let h = `<div class="panneau-meta">
+      <div class="panneau-meta-item"><span class="pm-label">Propriétaire</span><span class="pm-val ${f.proprio.includes('compléter')?'ac':''}">${f.proprio}</span></div>
+      <div class="panneau-meta-item"><span class="pm-label">Ancien</span><span class="pm-val ${f.ancien.includes('compléter')?'ac':''}">${f.ancien}</span></div>
+      <div class="panneau-meta-item"><span class="pm-label">Date</span><span class="pm-val ${f.date.includes('compléter')?'ac':''}">${f.date}</span></div>
+    </div>
+    <div class="panneau-section">La petite histoire</div>
+    <div class="panneau-texte">${f.histoire}</div>`;
+    if (f.ac) h += `<div class="panneau-ac">${f.ac}</div>`;
+    if (f.genea) h += `<a class="panneau-lien" href="genealogie.html">${f.genea}</a>`;
+    if (f.podcast) h += `<div class="podcast-box"><span class="podcast-label">Mémoire vivante</span><span class="podcast-texte">${f.podcast}</span></div>`;
+    document.getElementById('p-corps').innerHTML = h;
+    document.getElementById('panneau').classList.add('visible');
+  }
+  function fermerPanneau() { document.getElementById('panneau').classList.remove('visible'); }
+  function toggleMenu() {
+    document.getElementById('menuPanneau').classList.toggle('ouvert');
+    document.getElementById('menuOverlay').classList.toggle('visible');
+    document.getElementById('menuBtn').classList.toggle('actif');
+  }
+  </script>
+</body>
+</html>
