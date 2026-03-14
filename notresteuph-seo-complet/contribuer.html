@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Contribuer — Partagez vos souvenirs de Sainte-Euphémie-sur-Ouvèze | Notre Steuph</title>
+  <meta name="description" content="Contribuez à la mémoire de Sainte-Euphémie-sur-Ouvèze. Partagez vos photos, anecdotes, noms de familles et souvenirs du village de la Drôme Provençale.">
+  <meta name="keywords" content="contribuer Sainte-Euphémie-sur-Ouvèze, partager souvenirs, photos village, témoignages, archives familiales, Drôme Provençale">
+  <meta name="author" content="Florence Petrich">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://notresteuph.fr/contribuer.html">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notresteuph.fr/contribuer.html">
+  <meta property="og:title" content="Contribuer — Partagez vos souvenirs de Sainte-Euphémie-sur-Ouvèze">
+  <meta property="og:description" content="Partagez vos photos, anecdotes et souvenirs du village. Ce site est vivant parce que vous l'alimentez.">
+  <meta property="og:image" content="https://notresteuph.fr/images/accueil.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Notre Steuph">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contribuer — Partagez vos souvenirs de Sainte-Euphémie-sur-Ouvèze">
+  <meta name="twitter:description" content="Partagez vos photos, anecdotes et souvenirs du village.">
+  <meta name="twitter:image" content="https://notresteuph.fr/images/accueil.jpg">
+
+  <!-- GEO -->
+  <meta name="geo.region" content="FR-26">
+  <meta name="geo.placename" content="Sainte-Euphémie-sur-Ouvèze">
+  <meta name="geo.position" content="44.2833;5.1167">
+  <meta name="ICBM" content="44.2833, 5.1167">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contrib-intro { max-width: 600px; padding: 48px 32px; }
+    .contrib-texte { font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 1.8; color: #3a2e20; margin-bottom: 32px; }
+    .contrib-note { font-size: 14px; font-style: italic; color: #a08060; font-family: 'Cormorant Garamond', serif; border: 0.5px dashed #C4A882; border-radius: 4px; padding: 14px 18px; }
+    .contrib-formes { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 48px; }
+    .contrib-forme {
+      flex: 1; min-width: 200px;
+      border: 0.5px solid rgba(90,74,53,0.2);
+      border-radius: 4px; padding: 24px;
+      text-decoration: none; color: #2e2416;
+      transition: background 0.2s;
+    }
+    .contrib-forme:hover { background: #E8D9C0; }
+    .contrib-forme-titre { font-family: 'Cormorant Garamond', serif; font-size: 22px; margin-bottom: 8px; }
+    .contrib-forme-det { font-size: 13px; color: #7a6850; }
+  </style>
+</head>
+<body>
+  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </button>
+  <nav class="menu-panneau" id="menuPanneau">
+    <button class="menu-fermer" onclick="toggleMenu()">×</button>
+    <ul class="menu-liste">
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="village.html">Le village</a></li>
+      <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="patrimoine.html">Notre patrimoine</a></li>
+      <li><a href="vie.html">La vie du village</a></li>
+      <li><a href="contribuer.html">Contribuer</a></li>
+    </ul>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+  <div class="page-header">
+    <a href="index.html" class="page-retour">← Accueil</a>
+    <h1 class="page-titre">Contribuer</h1>
+    <p class="page-sous">Vos souvenirs, vos photos, vos histoires</p>
+  </div>
+  <div class="contrib-intro">
+    <p class="contrib-texte">Ce site est vivant parce que vous l'alimentez. Une photo ancienne, le nom d'une famille, une anecdote, une date — tout compte. Vous connaissez Steuph mieux que nous.</p>
+    <div class="contrib-note">→ Formulaire de contribution en cours de mise en place. En attendant, écrivez-nous directement.</div>
+  </div>
+  <footer class="pied">
+    <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
+  </footer>
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuPanneau').classList.toggle('ouvert');
+      document.getElementById('menuOverlay').classList.toggle('visible');
+      document.getElementById('menuBtn').classList.toggle('actif');
+    }
+  </script>
+</body>
+</html>

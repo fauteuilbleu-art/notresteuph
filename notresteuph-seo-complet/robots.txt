@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /espace-prive.html
+
+Sitemap: https://notresteuph.fr/sitemap.xml
