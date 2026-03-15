@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Notre Steuph — Mémoires d'un village | Sainte-Euphémie-sur-Ouvèze</title>
+  <meta name="description" content="Site mémoriel de Sainte-Euphémie-sur-Ouvèze, Drôme Provençale. Histoire, généalogie, photos, témoignages et mémoires des familles du village.">
+  <meta name="keywords" content="Sainte-Euphémie-sur-Ouvèze, Drôme Provençale, village, mémoires, généalogie, histoire, Gruel, Vrain, Brusset, Pasquet, Petrich">
+  <meta name="author" content="Florence Petrich">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://notresteuph.fr/">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notresteuph.fr/">
+  <meta property="og:title" content="Notre Steuph — Mémoires d'un village">
+  <meta property="og:description" content="Site mémoriel de Sainte-Euphémie-sur-Ouvèze, Drôme Provençale. On peut se sentir d'ici sans y vivre.">
+  <meta property="og:image" content="https://notresteuph.fr/images/accueil.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Notre Steuph">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Notre Steuph — Mémoires d'un village">
+  <meta name="twitter:description" content="Sainte-Euphémie-sur-Ouvèze, Drôme Provençale. Mémoires, généalogie, histoire d'un village.">
+  <meta name="twitter:image" content="https://notresteuph.fr/images/accueil.jpg">
+
+  <!-- GEO -->
+  <meta name="geo.region" content="FR-26">
+  <meta name="geo.placename" content="Sainte-Euphémie-sur-Ouvèze">
+  <meta name="geo.position" content="44.2833;5.1167">
+  <meta name="ICBM" content="44.2833, 5.1167">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MENU HAMBURGER -->
+  <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </button>
+
+  <!-- PANNEAU MENU -->
+  <nav class="menu-panneau" id="menuPanneau">
+    <button class="menu-fermer" onclick="toggleMenu()">×</button>
+    <ul class="menu-liste">
+      <li><a href="histoire.html">Histoire</a></li>
+      <li><a href="village.html">Le village</a></li>
+      <li><a href="memoires.html">Mémoires</a></li>
+      <li><a href="experiences.html">Expériences</a></li>
+      <li><a href="patrimoine.html">Notre patrimoine</a></li>
+      <li><a href="vie.html">La vie du village</a></li>
+      <li><a href="contribuer.html">Contribuer</a></li>
+    </ul>
+    <div class="menu-bas">
+      <a href="contribuer.html">Déposer un souvenir</a>
+      <a href="espace-prive.html">Espace privé</a>
+    </div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+  <!-- PAGE D'ACCUEIL -->
+  <main class="accueil">
+    <div class="hero-photo">
+      <img src="images/accueil.jpg" alt="Le Grand Portail de Sainte-Euphémie-sur-Ouvèze" />
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-texte">
+      <h1 class="hero-titre">Notre<br><em>Steuph</em></h1>
+      <p class="hero-sous">Mémoires d'un village</p>
+    </div>
+    <div class="hero-scroll">↓</div>
+  </main>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="intro-inner">
+      <p class="intro-texte">On peut se sentir d'ici sans y vivre. Ce site est né de cet attachement — celui des familles qui ont grandi à Steuph, qui y reviennent, qui y ont leurs morts et leurs racines, qui s'y installent, qui y séjournent. Un village de la Drôme Provençale, quatre-vingts âmes en hiver, beaucoup plus au fil des saisons, des siècles de mémoire.</p>
+      <div class="intro-liens">
+        <a href="village.html" class="intro-lien">Découvrir le village</a>
+        <a href="contribuer.html" class="intro-lien intro-lien-secondaire">Contribuer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RUBRIQUES -->
+  <section class="rubriques">
+    <a href="histoire.html" class="rubrique">
+      <div class="rubrique-num">01</div>
+      <div class="rubrique-nom">Histoire</div>
+      <div class="rubrique-det">800 ans, les maires, les dates clés</div>
+    </a>
+    <a href="village.html" class="rubrique">
+      <div class="rubrique-num">02</div>
+      <div class="rubrique-nom">Le village</div>
+      <div class="rubrique-det">Les maisons, les familles, la carte</div>
+    </a>
+    <a href="memoires.html" class="rubrique">
+      <div class="rubrique-num">03</div>
+      <div class="rubrique-nom">Mémoires</div>
+      <div class="rubrique-det">Photos, podcasts, témoignages</div>
+    </a>
+    <a href="patrimoine.html" class="rubrique">
+      <div class="rubrique-num">04</div>
+      <div class="rubrique-nom">Notre patrimoine</div>
+      <div class="rubrique-det">Avant/après, état des lieux</div>
+    </a>
+    <a href="vie.html" class="rubrique">
+      <div class="rubrique-num">05</div>
+      <div class="rubrique-nom">La vie du village</div>
+      <div class="rubrique-det">Événements, aux alentours</div>
+    </a>
+    <a href="experiences.html" class="rubrique">
+      <div class="rubrique-num">06</div>
+      <div class="rubrique-nom">Expériences</div>
+      <div class="rubrique-det">Balades, baignades, gourmandises</div>
+    </a>
+    <a href="contribuer.html" class="rubrique">
+      <div class="rubrique-num">07</div>
+      <div class="rubrique-nom">Contribuer</div>
+      <div class="rubrique-det">Déposer photos et souvenirs</div>
+    </a>
+  </section>
+
+
+  <section class="nl-section">
+    <div class="nl-inner">
+      <p class="nl-titre">La lettre de Notre Steuph</p>
+      <p class="nl-sous">Actualités du village, mémoires des familles — quelques fois par an.</p>
+      <form class="nl-form" action="https://notresteuph.us18.list-manage.com/subscribe/post?u=fa550661a90b200a66fa59c49&amp;id=3fd95c1ff8" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" class="nl-input" placeholder="Votre adresse e-mail" required>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_fa550661a90b200a66fa59c49_3fd95c1ff8" tabindex="-1" value=""></div>
+        <button type="submit" class="nl-btn">S'inscrire</button>
+      </form>
+      <p class="nl-note">Jamais de spam · Désinscription en un clic.</p>
+    </div>
+  </section>
+
+  <footer class="pied">
+    <p>Sainte-Euphémie-sur-Ouvèze, Drôme Provençale</p>
+    <p><a href="contribuer.html">Contribuer à ce site</a></p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('menuPanneau').classList.toggle('ouvert');
+      document.getElementById('menuOverlay').classList.toggle('visible');
+      document.getElementById('menuBtn').classList.toggle('actif');
+    }
+  </script>
+</body>
+</html>
