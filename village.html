@@ -145,7 +145,8 @@
       <div class="point" style="left:79.1%;top:20.4%" onclick="ouvrirFiche('pasquet')"><div class="point-cercle"></div><div class="point-label">Maison Pasquet — Christophe</div></div>
       <div class="point" style="left:75.4%;top:56.2%" onclick="ouvrirFiche('brusset')"><div class="point-cercle"></div><div class="point-label">Maison Brusset — Marcel</div></div>
       <div class="point" style="left:80.2%;top:40.1%" onclick="ouvrirFiche('christine_brusset')"><div class="point-cercle"></div><div class="point-label">Maison Christine Brusset</div></div>
-      <div class="point patrimoine" style="left:35.9%;top:93%" onclick="ouvrirFiche('mairie')"><div class="point-cercle"></div><div class="point-label">Mairie</div></div>
+      <div class="point" style="left:35.9%;top:93%" onclick="ouvrirFiche('mairie')"><div class="point-cercle"></div><div class="point-label">Mairie</div></div>
+      <div class="point" style="left:44%;top:78%" onclick="ouvrirFiche('tour')"><div class="point-cercle"></div><div class="point-label">La Tour — Maison Proust</div></div>
       <div class="point patrimoine" style="left:57%;top:22%" onclick="ouvrirFiche('lavoir')"><div class="point-cercle"></div><div class="point-label">Le Lavoir</div></div>
     </div>
     <div style="display:flex;gap:20px;margin-top:10px;flex-wrap:wrap;font-family:'Jost',sans-serif;">
@@ -193,6 +194,12 @@
   </div>
 
 
+    <div class="rue-titre">La Montée</div>
+    <div class="maisons-liste">
+      <div class="maison-vignette" onclick="ouvrirFiche('tour')"><div class="maison-img" style="background:url(images/maison_tour.jpg) center/cover"></div><div class="maison-info"><span class="maison-nom">La Tour</span><span class="maison-proprio">Anc. Eugénie et Pierre Borel</span></div></div>
+    </div>
+  </div>
+
   <section class="nl-section">
     <div class="nl-inner">
       <p class="nl-titre">La lettre de Notre Steuph</p>
@@ -235,7 +242,8 @@
     pasquet:{rue:"Le Grand Portail",titre:"Maison Pasquet",sous:"Christophe & Elisa Pasquet",proprio:"Christophe & Elisa Pasquet",ancien:"Père Martin → Chantal Gruel †",date:"à compléter",histoire:`Acquise par <em>Chantal Gruel †</em> auprès du père Martin. Aujourd'hui propriété de <em>Christophe et Elisa Pasquet</em>. Christophe possède deux granges attenantes, en face desquelles se trouve la maison de Marcel Brusset.`,ac:"→ Qui était le père Martin ?",genea:"Voir la généalogie complète Gruel-Roger →"},
     brusset:{rue:"Le Grand Portail",titre:"Maison Brusset",sous:"Marcel Brusset",proprio:"Marcel Brusset",ancien:"à compléter",date:"à compléter",histoire:`Les Brusset sont une des familles cultivatrices historiques de Steuph. <em>Marcel Brusset</em>, encore vivant, est l'une des dernières mémoires agricoles du village.`,ac:"→ Histoire à compléter.",podcast:"Marcel Brusset est un candidat prioritaire pour un podcast ou une interview."},
     christine_brusset:{rue:"Le Grand Portail",titre:"Maison Christine Brusset",sous:"Christine Brusset, fille de Marcel",proprio:"Christine Brusset",ancien:"à compléter",date:"à compléter",histoire:`Maison de <em>Christine Brusset</em>, fille de Marcel Brusset. Elle habite dans le village, en face du gîte de son frère Daniel.`,ac:"→ Histoire à compléter."},
-    mairie:{rue:"Le Grand Portail",titre:"La Mairie",sous:"Commune de Sainte-Euphémie-sur-Ouvèze",proprio:"Commune",ancien:"—",date:"à compléter",histoire:`La mairie de Sainte-Euphémie-sur-Ouvèze.`,ac:"→ Histoire du bâtiment à compléter."}
+    mairie:{rue:"Le Grand Portail",titre:"La Mairie",sous:"Commune de Sainte-Euphémie-sur-Ouvèze",proprio:"Commune",ancien:"—",date:"à compléter",histoire:`La mairie de Sainte-Euphémie-sur-Ouvèze.`,ac:"→ Histoire du bâtiment à compléter."},
+    tour:{rue:"La Montée",titre:"La Tour — Maison Proust",sous:"Ancienne maison Eugénie et Pierre Borel",proprio:"Petite-fille de Pierre Borel",ancien:"Eugénie et Pierre Borel",date:"à compléter",photo:"images/maison_tour.jpg",histoire:`Cette maison qu'on appelle <em>la Tour</em> a appartenu à <em>Eugénie et Pierre Borel</em>, figures du village. Au fil des décennies elle a changé de main avant de pouvoir être finalement rachetée par une des petites-filles de Pierre Borel.`,ac:"→ Histoire complète, dates, familles intermédiaires à compléter."}
   };
 
   function ouvrirFiche(id) {
