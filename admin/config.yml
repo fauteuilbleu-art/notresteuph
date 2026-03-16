@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: fauteuilbleu-art/notresteuph
+  branch: main
+  base_url: https://oauth.notresteuph.fr
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Accueil"
+        name: "index"
+        file: "index.html"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+
+  - name: "fiches"
+    label: "Fiches village"
+    folder: "fiches"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nom", name: "title", widget: "string" }
+      - { label: "Rue", name: "rue", widget: "string" }
+      - { label: "Texte", name: "body", widget: "markdown" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
