@@ -2,7 +2,8 @@ backend:
   name: github
   repo: fauteuilbleu-art/notresteuph
   branch: main
-  base_url: https://oauth.notresteuph.fr
+  auth_type: pkce
+  app_id: Ov23liAm17iU0bQVNi8b
 
 media_folder: "images"
 public_folder: "/images"
